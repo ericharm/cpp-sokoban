@@ -6,10 +6,10 @@ Tile::Tile(int x, int y) {
 }
 
 Tile::Tile() {
-  x = 0;
-  y = 0;
+  this->x = 0;
+  this->y = 0;
 }
 
 void Tile::draw(WINDOW * win) {
-  mvwaddch(win, y, x, '.');
+  mvwaddch(win, this->y, this->x, '.');
 }

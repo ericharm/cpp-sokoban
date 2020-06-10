@@ -15,13 +15,13 @@ void Game::run() {
   // tiles
   for (int y = 0; y < WINDOW_HEIGHT - 1; y++) {
     for (int x = 0; x < WINDOW_WIDTH - 1; x++) {
-      tiles[y][x] = Tile(x + 1, y + 1);
+      this->tiles[y][x] = Tile(x + 1, y + 1);
     }
   }
   
   // player
-  player = Player();
-  player.moveTo(5, 5);
+  this->player = Player();
+  this->player.moveTo(5, 5);
 
   /* sf::Clock clock; */
   /* sf::Time timePerFrame = sf::seconds(1.0f / 30.0f); */
@@ -44,16 +44,16 @@ void Game::handleInput() {
   int ch = getch();
   switch (ch) {
     case 'j':
-      player.move(0, 1);
+      this->player.move(0, 1);
       break;
     case 'k':
-      player.move(0, -1);
+      this->player.move(0, -1);
       break;
     case 'h':
-      player.move(-1, 0);
+      this->player.move(-1, 0);
       break;
     case 'l':
-      player.move(1, 0);
+      this->player.move(1, 0);
       break;
   }
 
@@ -75,10 +75,10 @@ void Game::update() {
 void Game::draw() {
   for (int y = 0; y < WINDOW_HEIGHT - 1; y++) {
     for (int x = 0; x < WINDOW_WIDTH - 1; x++) {
-      tiles[y][x].draw(win);
+      this->tiles[y][x].draw(win);
     }
   }
-  player.draw(win);
+  this->player.draw(win);
 
   wrefresh(win);
 }
