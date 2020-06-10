@@ -2,6 +2,15 @@
 /* #include <curses.h> */
 #include "src/game.h"
 
+void signalHandler(int signum) {
+  std::cout << "Interrupt signal (" << signum << ") received.\n";
+  endwin();
+  // cleanup and close up stuff here  
+  // terminate program  
+
+  exit(signum);  
+}
+
 int main() {
   initscr();
 
