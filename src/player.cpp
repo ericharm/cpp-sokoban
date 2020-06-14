@@ -5,7 +5,7 @@ Player::Player() {
   this->y = 0;
 }
 
-void Player::moveTo(int x, int y) {
+void Player::move_to(int x, int y) {
   this->x = x;
   this->y = y;
 }
@@ -16,5 +16,5 @@ void Player::move(int x, int y) {
 }
 
 void Player::draw(WINDOW * win) {
-  mvwaddch(win, this->y, this->x, '@');
+  mvwaddch(win, this->y, this->x, '@' | COLOR_PAIR(1));
 }

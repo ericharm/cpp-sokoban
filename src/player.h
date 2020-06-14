@@ -6,7 +6,7 @@ class Player {
 
   public:
     Player();
-    void moveTo(int x, int y);
+    void move_to(int x, int y);
     void move(int x, int y);
     void draw(WINDOW * win);
 

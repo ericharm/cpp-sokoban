@@ -14,10 +14,11 @@ class Game {
     void run();
 
   private:
-    void handleInput();
-    /* void update(sf::Time deltaTime); */
+    void handle_input();
+    /* void update(sf::Time delta_time); */
     void update();
     void draw();
+    void configure_curses();
 
   private:
     WINDOW * win;
@@ -27,9 +28,9 @@ class Game {
     // which in turn will be handled by world class possibly
     // may not need scene nodes for tile based game
     // maybe this is a dynamically-sized array, we'll see
-    Tile tiles [WINDOW_HEIGHT - 2][WINDOW_WIDTH - 2];
+    Tile tiles [WINDOW_HEIGHT][WINDOW_WIDTH];
     /* World world; */
-    /* GameInputHandler inputHandler; */
+    /* GameInputHandler input_handler; */
 
 };
 #endif

@@ -6,40 +6,36 @@ Game::Game() : win(newwin(WINDOW_HEIGHT + 1, WINDOW_WIDTH + 1, 1, 1)) {
 }
 
 void Game::run() {
-  wborder(win, 0, 0, 0, 0, 0, 0, 0, 0);
-  noecho();
-  cbreak();
-  curs_set(0);
-  wrefresh(win);
+  configure_curses();
 
   // tiles
-  for (int y = 0; y < WINDOW_HEIGHT - 1; y++) {
-    for (int x = 0; x < WINDOW_WIDTH - 1; x++) {
-      this->tiles[y][x] = Tile(x + 1, y + 1);
+  for (int y = 0; y < WINDOW_HEIGHT; y++) {
+    for (int x = 0; x < WINDOW_WIDTH; x++) {
+      this->tiles[y][x] = Tile(x, y);
     }
   }
   
   // player
   this->player = Player();
-  this->player.moveTo(5, 5);
+  this->player.move_to(5, 5);
 
   /* sf::Clock clock; */
-  /* sf::Time timePerFrame = sf::seconds(1.0f / 30.0f); */
-  /* sf::Time timeSinceLastUpdate = sf::Time::Zero; */
-  /* while (window.isOpen()) { */
+  /* sf::Time time_per_frame = sf::seconds(1.0f / 30.0f); */
+  /* sf::Time time_since_last_update = sf::Time::Zero; */
+  /* while (window.is_open()) { */
   while (true) {
-    /* timeSinceLastUpdate += clock.restart(); */
-    /* while (timeSinceLastUpdate > timePerFrame) { */
-    /* timeSinceLastUpdate -= timePerFrame; */
-    handleInput();
-    /* update(timePerFrame); */
+    /* time_sinceLastUpdate += clock.restart(); */
+    /* while (time_sinceLastUpdate > timePerFrame) { */
+    /* timeSinceLast_update -= time_per_frame; */
+    handle_input();
+    /* update(time_per_frame); */
     update();
     /* } */
     draw();
   }
 }
 
-void Game::handleInput() {
+void Game::handle_input() {
   nodelay(stdscr, true);
   int ch = getch();
   switch (ch) {
@@ -59,26 +55,37 @@ void Game::handleInput() {
 
   /* CommandQueue& commands = world.getCommandQueue(); */
   /* sf::Event event; */
-  /* while (window.pollEvent(event)) { */
-  /*   inputHandler.handleEvent(event, commands); */
+  /* while (window.poll_event(event)) { */
+  /*   inputHandler.handle_event(event, commands); */
   /*   if (event.type == sf::Event::Closed) */
   /*     window.close(); */
   /* } */
-  /* inputHandler.handleRealtimeInput(commands); */
+  /* input_handler.handleRealtimeInput(commands); */
 }
 
 void Game::update() {
-/* void Game::update(sf::Time deltaTime) { */
+/* void Game::update(sf::Time delta_time) { */
   /* world.update(deltaTime); */
 }
 
 void Game::draw() {
-  for (int y = 0; y < WINDOW_HEIGHT - 1; y++) {
-    for (int x = 0; x < WINDOW_WIDTH - 1; x++) {
+  for (int y = 0; y < WINDOW_HEIGHT; y++) {
+    for (int x = 0; x < WINDOW_WIDTH; x++) {
       this->tiles[y][x].draw(win);
     }
   }
   this->player.draw(win);
 
+  wborder(win, 0, 0, 0, 0, 0, 0, 0, 0);
+  wrefresh(win);
+}
+
+void Game::configure_curses() {
+  /* wborder(win, 0, 0, 0, 0, 0, 0, 0, 0); */
+  noecho();
+  cbreak();
+  curs_set(0);
+  start_color();
+  init_pair(1, COLOR_MAGENTA, COLOR_BLACK);
   wrefresh(win);
 }
