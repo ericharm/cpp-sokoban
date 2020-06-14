@@ -1,4 +1,5 @@
 #include "config.h"
+#include <ctime>
 #include <curses.h>
 #include "game.h"
 
@@ -19,19 +20,19 @@ void Game::run() {
   this->player = Player();
   this->player.move_to(5, 5);
 
-  /* sf::Clock clock; */
-  /* sf::Time time_per_frame = sf::seconds(1.0f / 30.0f); */
-  /* sf::Time time_since_last_update = sf::Time::Zero; */
-  /* while (window.is_open()) { */
+
+  time_t t = time(NULL);
+  double time_per_frame = 1 / 30;
+
   while (true) {
-    /* time_sinceLastUpdate += clock.restart(); */
-    /* while (time_sinceLastUpdate > timePerFrame) { */
-    /* timeSinceLast_update -= time_per_frame; */
+    time_t now = time(NULL);
+    double delta_time = difftime(now, t);
+    if (delta_time >= time_per_frame) {
+      t = now;
+      update();
+      draw();
+    }
     handle_input();
-    /* update(time_per_frame); */
-    update();
-    /* } */
-    draw();
   }
 }
 
