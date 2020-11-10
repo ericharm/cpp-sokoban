@@ -37,7 +37,6 @@ void Game::run() {
 }
 
 void Game::handle_input() {
-  nodelay(stdscr, true);
   int ch = getch();
   switch (ch) {
     case 'j':
@@ -88,5 +87,5 @@ void Game::configure_curses() {
   curs_set(0);
   start_color();
   init_pair(1, COLOR_MAGENTA, COLOR_BLACK);
-  wrefresh(win);
+  refresh();
 }
