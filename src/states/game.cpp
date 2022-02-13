@@ -1,17 +1,13 @@
 #include "../Config.h"
-#include <ctime>
-#include <curses.h>
 #include "Game.h"
 
-// Game::Game() : win(newwin(WINDOW_HEIGHT + 1, WINDOW_WIDTH + 1, 1, 1)) {
 Game::Game() {
   for (int y = 0; y < WINDOW_HEIGHT; y++) {
     for (int x = 0; x < WINDOW_WIDTH; x++) {
-      this->tiles[y][x] = Tile(x, y);
+      this->tiles[y][x].moveTo(x, y);
     }
   }
 
-  this->player = Player();
   this->player.moveTo(5, 5);
 }
 
@@ -43,7 +39,4 @@ void Game::render(WINDOW* win) const {
     }
   }
   this->player.render(win);
-
-  wborder(win, 0, 0, 0, 0, 0, 0, 0, 0);
-  wrefresh(win);
 }

@@ -35,6 +35,8 @@ int main() {
     while (!states.empty()) {
       State* state = states.top();
       state->render(win);
+      wborder(win, 0, 0, 0, 0, 0, 0, 0, 0);
+      wrefresh(win);
       state->handleInput();
       state->update();
     }

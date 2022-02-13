@@ -5,13 +5,14 @@
 class Entity {
 
   public:
-    Entity() {};
+    Entity();
+    Entity(int x, int y);
     virtual ~Entity() = default;
     virtual void render(WINDOW * win) const = 0;
-    virtual void moveBy(int x, int y) = 0;
-    virtual void moveTo(int x, int y) = 0;
+    virtual void moveBy(int x, int y);
+    virtual void moveTo(int x, int y);
 
-  private:
+  protected:
     int x;
     int y;
 };

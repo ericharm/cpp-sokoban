@@ -14,7 +14,6 @@ class Game: public State {
     void update();
 
   private:
-    // WINDOW * win;
     Player player;
  
     // these will be handled by levels later,
