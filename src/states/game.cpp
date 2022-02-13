@@ -1,4 +1,4 @@
-#include "config.h"
+#include "../config.h"
 #include <ctime>
 #include <curses.h>
 #include "game.h"

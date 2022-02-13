@@ -2,7 +2,7 @@
 #include <stack>
 #include <curses.h>
 #include "src/state.h"
-#include "src/game.h"
+#include "src/states/game.h"
 
 void signalHandler(int signum) {
   std::cout << "Interrupt signal (" << signum << ") received.\n";
@@ -13,7 +13,7 @@ void signalHandler(int signum) {
   exit(signum);  
 }
 
- WINDOW * configureCurses() {
+ WINDOW * getCursesWindow() {
   initscr();
   WINDOW * win =  newwin(WINDOW_HEIGHT + 1, WINDOW_WIDTH + 1, 1, 1);
   wborder(win, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -27,12 +27,11 @@ void signalHandler(int signum) {
 }
 
 int main() {
-  WINDOW * win = configureCurses();
+  WINDOW * win = getCursesWindow();
   try {
     std::stack<State*> states;
     Game game = Game();
     states.push(&game);
-    // game.run();
     while (!states.empty()) {
       State* state = states.top();
       state->render(win);

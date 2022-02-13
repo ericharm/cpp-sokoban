@@ -14,7 +14,7 @@ build/main.o: build/game.o
 	 $(CPP) $(CPPFLAGS) main.cpp $(OFLAGS)main.o
 
 build/game.o: build/tile.o build/player.o
-	 $(CPP) $(CPPFLAGS) src/game.cpp $(OFLAGS)game.o
+	 $(CPP) $(CPPFLAGS) src/states/game.cpp $(OFLAGS)game.o
 
 build/state.o: build/state.o
 	 $(CPP) $(CPPFLAGS) src/state.h $(OFLAGS)state.o
