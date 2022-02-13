@@ -1,9 +1,9 @@
-#include "../config.h"
+#include "../Config.h"
 #ifndef GAME_H
 #define GAME_H
-#include "../player.h"
-#include "../tile.h"
-#include "../state.h"
+#include "../entities/Player.h"
+#include "../entities/Tile.h"
+#include "../State.h"
 
 class Game: public State {
 

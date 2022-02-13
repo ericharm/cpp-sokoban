@@ -1,8 +1,8 @@
 #include <iostream>
 #include <stack>
 #include <curses.h>
-#include "src/state.h"
-#include "src/states/game.h"
+#include "src/State.h"
+#include "src/states/Game.h"
 
 void signalHandler(int signum) {
   std::cout << "Interrupt signal (" << signum << ") received.\n";
