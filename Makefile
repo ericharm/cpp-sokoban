@@ -1,11 +1,11 @@
 CPP=g++
-CPPFLAGS=--std=c++11 -c
+CPPFLAGS=--std=c++11 -c -g
 OFLAGS=-o ./build/
 
 all: build/app
 
 run:
-	 make clean && make && ./build/app -Wall -g
+	 make clean && make && ./build/app
 
 build/app: build/main.o
 	 g++ build/*.o -lcurses -o build/app

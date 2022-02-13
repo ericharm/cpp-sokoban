@@ -20,6 +20,6 @@ void Entity::moveBy(int x, int y) {
   this->y += y;
 }
 
-void Entity::render(WINDOW * win) const {
+void Entity::render(WINDOW * win) {
   mvwaddch(win, this->y, this->x, this->character | COLOR_PAIR(this->color));
 }

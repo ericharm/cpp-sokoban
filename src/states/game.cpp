@@ -1,8 +1,9 @@
 #include "../Config.h"
 #include "Game.h"
+#include "../entities/Boulder.h"
 
 Game::Game() {
-
+  this->entities.push_back(std::unique_ptr<Boulder>(new Boulder(6, 6)));
   this->player.moveTo(5, 5);
 }
 
@@ -26,6 +27,10 @@ void Game::handleInput(int key) {
 void Game::update() {
 }
 
-void Game::render(WINDOW* win) const {
+void Game::render(WINDOW* win) {
+  for (std::unique_ptr<Entity>& entity : entities) {
+    entity->render(win);
+  }
+
   this->player.render(win);
 }

@@ -7,7 +7,7 @@ class State {
   public:
     State() {};
     virtual ~State() = default;
-    virtual void render(WINDOW * win) const = 0;
+    virtual void render(WINDOW * win) = 0;
     virtual void handleInput(int key) = 0;
     virtual void update() = 0;
 };

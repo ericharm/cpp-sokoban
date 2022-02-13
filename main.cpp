@@ -23,6 +23,7 @@ void signalHandler(int signum) {
   curs_set(0);
   start_color();
   init_pair(1, COLOR_MAGENTA, COLOR_BLACK);
+  init_pair(2, COLOR_CYAN, COLOR_BLACK);
   refresh();
   return win;
 }
@@ -30,6 +31,7 @@ void signalHandler(int signum) {
 int main() {
   WINDOW * win = getCursesWindow();
   try {
+    // use unique_ptrs
     std::stack<State*> states;
     Game game = Game();
     states.push(&game);

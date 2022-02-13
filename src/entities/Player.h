@@ -11,6 +11,6 @@ class Player: public Entity {
       this->y = 0;
       this->character = '@';
       this->color = 1;
-    }
+    };
 };
 #endif
