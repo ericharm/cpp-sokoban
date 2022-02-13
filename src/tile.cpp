@@ -10,6 +10,6 @@ Tile::Tile() {
   this->y = 0;
 }
 
-void Tile::draw(WINDOW * win) {
+void Tile::draw(WINDOW * win) const {
   mvwaddch(win, this->y, this->x, '.');
 }

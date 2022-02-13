@@ -7,7 +7,7 @@ class Tile {
   public:
     Tile();
     Tile(int x, int y);
-    void draw(WINDOW * win);
+    void draw(WINDOW * win) const;
 
   private:
     int x;

@@ -5,7 +5,7 @@ OFLAGS=-o ./build/
 all: build/app
 
 run:
-	 make clean && make && ./build/app
+	 make clean && make && ./build/app -Wall -g
 
 build/app: build/main.o
 	 g++ build/*.o -lcurses -o build/app
@@ -15,6 +15,9 @@ build/main.o: build/game.o
 
 build/game.o: build/tile.o build/player.o
 	 $(CPP) $(CPPFLAGS) src/game.cpp $(OFLAGS)game.o
+
+build/state.o: build/state.o
+	 $(CPP) $(CPPFLAGS) src/state.h $(OFLAGS)state.o
 
 build/player.o: build
 	 $(CPP) $(CPPFLAGS) src/player.cpp $(OFLAGS)player.o

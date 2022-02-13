@@ -15,6 +15,6 @@ void Player::move(int x, int y) {
   this->y += y;
 }
 
-void Player::draw(WINDOW * win) {
+void Player::draw(WINDOW * win) const {
   mvwaddch(win, this->y, this->x, '@' | COLOR_PAIR(1));
 }

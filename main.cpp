@@ -1,5 +1,7 @@
 #include <iostream>
-/* #include <curses.h> */
+#include <stack>
+#include <curses.h>
+#include "src/state.h"
 #include "src/game.h"
 
 void signalHandler(int signum) {
@@ -11,17 +13,33 @@ void signalHandler(int signum) {
   exit(signum);  
 }
 
-int main() {
+ WINDOW * configureCurses() {
   initscr();
+  WINDOW * win =  newwin(WINDOW_HEIGHT + 1, WINDOW_WIDTH + 1, 1, 1);
+  wborder(win, 0, 0, 0, 0, 0, 0, 0, 0);
+  noecho();
+  cbreak();
+  curs_set(0);
+  start_color();
+  init_pair(1, COLOR_MAGENTA, COLOR_BLACK);
+  refresh();
+  return win;
+}
 
-  /* int wd = 50; */
-  /* int ht = 8; */
-
-  /* WINDOW * win = newwin(ht + 1, wd + 1, 1, 1); */
-
+int main() {
+  WINDOW * win = configureCurses();
   try {
+    std::stack<State*> states;
     Game game = Game();
-    game.run();
+    states.push(&game);
+    // game.run();
+    while (!states.empty()) {
+      State* state = states.top();
+      state->render(win);
+      state->handleInput();
+      state->update();
+    }
+
   }
   catch (std::exception& e) {
     endwin(); // should also do this on sigint

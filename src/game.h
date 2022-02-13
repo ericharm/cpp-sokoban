@@ -1,27 +1,20 @@
 #include "config.h"
 #ifndef GAME_H
 #define GAME_H
-#include <curses.h>
 #include "player.h"
 #include "tile.h"
-/* #include "world.h" */
-/* #include "game_input_handler.h" */
+#include "state.h"
 
-class Game {
+class Game: public State {
 
   public:
     Game();
-    void run();
-
-  private:
-    void handle_input();
-    /* void update(sf::Time delta_time); */
+    void render(WINDOW * win) const;
+    void handleInput();
     void update();
-    void draw();
-    void configure_curses();
 
   private:
-    WINDOW * win;
+    // WINDOW * win;
     Player player;
  
     // these will be handled by levels later,
