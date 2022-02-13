@@ -6,7 +6,12 @@
 class Tile: public Entity {
 
   public:
-    void render(WINDOW * win) const;
+    Tile() {
+      this->x = 0;
+      this->y = 0;
+      this->character = '.';
+      this->color = 0;
+    };
 
 };
 #endif

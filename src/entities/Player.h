@@ -6,7 +6,11 @@
 class Player: public Entity {
 
   public:
-    void render(WINDOW * win) const;
-
+    Player() {
+      this->x = 0;
+      this->y = 0;
+      this->character = '@';
+      this->color = 1;
+    }
 };
 #endif
