@@ -8,7 +8,7 @@ class State {
     State() {};
     virtual ~State() = default;
     virtual void render(WINDOW * win) const = 0;
-    virtual void handleInput() = 0;
+    virtual void handleInput(int key) = 0;
     virtual void update() = 0;
 };
 

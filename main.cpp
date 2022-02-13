@@ -18,6 +18,7 @@ void signalHandler(int signum) {
   WINDOW * win =  newwin(WINDOW_HEIGHT + 1, WINDOW_WIDTH + 1, 1, 1);
   wborder(win, 0, 0, 0, 0, 0, 0, 0, 0);
   noecho();
+  keypad(stdscr, TRUE);
   cbreak();
   curs_set(0);
   start_color();
@@ -37,8 +38,9 @@ int main() {
       state->render(win);
       wborder(win, 0, 0, 0, 0, 0, 0, 0, 0);
       wrefresh(win);
-      state->handleInput();
+      state->handleInput(getch());
       state->update();
+      wclear(win);
     }
 
   }

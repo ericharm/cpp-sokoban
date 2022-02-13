@@ -10,7 +10,7 @@ class Game: public State {
   public:
     Game();
     void render(WINDOW * win) const;
-    void handleInput();
+    void handleInput(int key);
     void update();
 
   private:
@@ -20,7 +20,7 @@ class Game: public State {
     // which in turn will be handled by world class possibly
     // may not need scene nodes for tile based game
     // maybe this is a dynamically-sized array, we'll see
-    Tile tiles [WINDOW_HEIGHT][WINDOW_WIDTH];
+    // Tile tiles [WINDOW_HEIGHT][WINDOW_WIDTH];
     /* World world; */
     /* GameInputHandler input_handler; */
 
