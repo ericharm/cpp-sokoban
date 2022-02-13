@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stack>
+#include <memory>
 #include <curses.h>
 #include "src/State.h"
 #include "src/states/Game.h"
@@ -32,11 +33,10 @@ int main() {
   WINDOW * win = getCursesWindow();
   try {
     // use unique_ptrs
-    std::stack<State*> states;
-    Game game = Game();
-    states.push(&game);
+    std::stack<std::unique_ptr<State>> states;
+    states.push(std::unique_ptr<Game>(new Game()));
     while (!states.empty()) {
-      State* state = states.top();
+      std::unique_ptr<State>& state = states.top();
       state->render(win);
       wborder(win, 0, 0, 0, 0, 0, 0, 0, 0);
       wrefresh(win);
