@@ -1,9 +1,11 @@
+#include <fstream>
 #include "../Config.h"
-#include "Game.h"
 #include "../entities/Boulder.h"
+#include "../LineAndCharacterIterator.h"
+#include "Game.h"
 
 Game::Game() {
-  this->entities.push_back(std::unique_ptr<Boulder>(new Boulder(6, 6)));
+  this->placeEntities();
   this->player.moveTo(5, 5);
 }
 
@@ -33,4 +35,23 @@ void Game::render(WINDOW* win) {
   }
 
   this->player.render(win);
+}
+
+void Game::placeEntities() {
+  std::ifstream file = std::ifstream("./data/1a.lvl");
+  std::vector<std::string> lines; 
+  std::string line; 
+  while(std::getline(file, line)) lines.push_back(line); 
+
+  int row = 0;
+  for (std::string& line : lines) {
+    int column = 0;
+    row++;
+    for (char& character: line) {
+      column++;
+      if (character == '0') {
+        this->entities.push_back(std::unique_ptr<Boulder>(new Boulder(column, row)));
+      }
+    }
+  }
 }

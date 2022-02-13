@@ -6,7 +6,6 @@
 #include "../State.h"
 #include "../entities/Player.h"
 
-
 class Game: public State {
 
   public:
@@ -16,7 +15,10 @@ class Game: public State {
     void update();
 
   private:
+    // TODO: use a unique_ptr
     Player player;
     std::vector<std::unique_ptr<Entity>> entities;
+    void placeEntities();
+
 };
 #endif

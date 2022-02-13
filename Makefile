@@ -13,8 +13,11 @@ build/app: build/main.o
 build/main.o: build/game.o
 	 $(CPP) $(CPPFLAGS) main.cpp $(OFLAGS)main.o
 
-build/game.o: build/entity.o
+build/game.o: build/entity.o build/line_and_character_iterator.o
 	 $(CPP) $(CPPFLAGS) src/states/Game.cpp $(OFLAGS)game.o
+
+build/line_and_character_iterator.o: build
+	 $(CPP) $(CPPFLAGS) src/LineAndCharacterIterator.cpp $(OFLAGS)line_and_character_iterator.o
 
 build/entity.o: build
 	 $(CPP) $(CPPFLAGS) src/Entity.cpp $(OFLAGS)entity.o

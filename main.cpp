@@ -17,7 +17,6 @@ void signalHandler(int signum) {
  WINDOW * getCursesWindow() {
   initscr();
   WINDOW * win =  newwin(WINDOW_HEIGHT + 1, WINDOW_WIDTH + 1, 1, 1);
-  wborder(win, 0, 0, 0, 0, 0, 0, 0, 0);
   noecho();
   keypad(stdscr, TRUE);
   cbreak();
@@ -32,17 +31,16 @@ void signalHandler(int signum) {
 int main() {
   WINDOW * win = getCursesWindow();
   try {
-    // use unique_ptrs
     std::stack<std::unique_ptr<State>> states;
     states.push(std::unique_ptr<Game>(new Game()));
     while (!states.empty()) {
       std::unique_ptr<State>& state = states.top();
+      wclear(win);
       state->render(win);
       wborder(win, 0, 0, 0, 0, 0, 0, 0, 0);
       wrefresh(win);
       state->handleInput(getch());
       state->update();
-      wclear(win);
     }
 
   }
