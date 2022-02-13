@@ -1,6 +1,7 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 #include <curses.h>
+#include <vector>
 
 class Entity {
 
@@ -11,6 +12,7 @@ class Entity {
     virtual void render(WINDOW * win);
     virtual void moveBy(int x, int y);
     virtual void moveTo(int x, int y);
+    virtual void onCollidesWith(std::vector<Entity*>, int x, int y);
 
   protected:
     int x;

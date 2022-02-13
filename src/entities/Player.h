@@ -6,11 +6,7 @@
 class Player: public Entity {
 
   public:
-    Player() {
-      this->x = 0;
-      this->y = 0;
-      this->character = '@';
-      this->color = 1;
-    };
+    Player();
+    void moveBy(int x, int y);
 };
 #endif

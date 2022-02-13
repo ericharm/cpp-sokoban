@@ -2,6 +2,7 @@
 #include <stack>
 #include <memory>
 #include <curses.h>
+#include "src/Config.h"
 #include "src/State.h"
 #include "src/states/Game.h"
 

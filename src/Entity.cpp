@@ -23,3 +23,7 @@ void Entity::moveBy(int x, int y) {
 void Entity::render(WINDOW * win) {
   mvwaddch(win, this->y, this->x, this->character | COLOR_PAIR(this->color));
 }
+
+void Entity::onCollidesWith(std::vector<Entity*>, int x, int y) {
+
+}
