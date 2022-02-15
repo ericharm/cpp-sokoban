@@ -10,7 +10,7 @@ class Boulder: public Entity {
       this->moveTo(x, y);
       this->character = '0';
       this->color = 2;
+      this->typeName = "Boulder";
     };
-
 };
 #endif

@@ -6,7 +6,11 @@
 class Player: public Entity {
 
   public:
-    Player();
-    void moveBy(int x, int y);
+    Player(int x, int y) {
+      this->moveTo(x, y);
+      this->character = '@';
+      this->color = 1;
+      this->typeName = "Player";
+    };
 };
 #endif
