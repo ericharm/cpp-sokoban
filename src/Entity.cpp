@@ -28,12 +28,14 @@ bool Entity::moveBy(int x, int y, std::vector<std::shared_ptr<Entity>> entities)
   int newY = this->y + y;
   for (std::shared_ptr<Entity>& entity : entities) {
     if (entity->getX() == newX && entity->getY() == newY) {
-      entity->handleCollisionWith(this);
+      if (this->handleCollisionWith(entity)) {
+        this->moveBy(x, y);
+        return true;
+      } else return false;
     }
   }
 
-  this->x += x;
-  this->y += y;
+  this->moveBy(x, y);
   return true;
 }
 
@@ -49,13 +51,9 @@ void Entity::render(WINDOW * win) {
   mvwaddch(win, this->y, this->x, this->character | COLOR_PAIR(this->color));
 }
 
-bool Entity::handleCollisionWith(Entity* entity) {
-  if (entity->typeName == "Boulder") {
-    // now pass check collisions to next entity
-    if (this->x < entity->getX()) entity->moveBy(-1, 0);
-    if (this->x > entity->getX()) entity->moveBy(1, 0);
-    if (this->y < entity->getY()) entity->moveBy(0, -1);
-    if (this->y > entity->getY()) entity->moveBy(0, 1);
+bool Entity::handleCollisionWith(std::shared_ptr<Entity> entity) {
+  if (entity->typeName == "Wall") {
+    return false;
   }
   return true;
 }

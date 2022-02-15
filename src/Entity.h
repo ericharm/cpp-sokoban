@@ -16,16 +16,16 @@ class Entity {
     virtual void moveTo(int x, int y);
     virtual int getX();
     virtual int getY();
+    std::string typeName; // replace with enum
 
   protected:
     int x;
     int y;
     int color = 0; // move this to an enum
     char character = '?';
-    std::string typeName; // replace with enum
 
   private:
-    virtual bool handleCollisionWith(Entity* entity);
+    virtual bool handleCollisionWith(std::shared_ptr<Entity> entity);
 
 };
 
