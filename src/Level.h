@@ -14,7 +14,7 @@ class Level {
   private:
     std::shared_ptr<Player> player;
     std::vector<std::shared_ptr<Entity>> entities;
-    std::vector<std::string> readLevel(std::string fileName); 
+    std::vector<std::string> readLevel(std::string fileName);
     void placeEntities();
 };
 

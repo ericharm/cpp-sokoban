@@ -16,11 +16,14 @@ build/main.o: build/game.o
 build/game.o: build/entity.o build/level.o
 	 $(CPP) $(CPPFLAGS) src/states/Game.cpp $(OFLAGS)game.o
 
-build/level.o: build/entity.o build/player.o
+build/level.o: build/entity.o build/player.o build/boulder.o
 	 $(CPP) $(CPPFLAGS) src/Level.cpp $(OFLAGS)level.o
 
 build/player.o: build/entity.o
 	 $(CPP) $(CPPFLAGS) src/entities/Player.cpp $(OFLAGS)player.o
+
+build/boulder.o: build/entity.o
+	 $(CPP) $(CPPFLAGS) src/entities/Boulder.cpp $(OFLAGS)boulder.o
 
 build/entity.o: build
 	 $(CPP) $(CPPFLAGS) src/Entity.cpp $(OFLAGS)entity.o

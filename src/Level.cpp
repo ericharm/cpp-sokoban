@@ -42,7 +42,7 @@ std::vector<std::string> Level::readLevel(std::string fileName) {
   std::ifstream file = std::ifstream("./data/1a.lvl");
   std::vector<std::string> lines; 
   std::string line; 
-  while(std::getline(file, line)) lines.push_back(line); 
+  while(std::getline(file, line)) lines.push_back(line);
   return lines;
 }
 

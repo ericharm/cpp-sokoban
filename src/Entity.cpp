@@ -29,7 +29,7 @@ bool Entity::moveBy(int x, int y, std::vector<std::shared_ptr<Entity>> entities)
   for (std::shared_ptr<Entity>& entity : entities) {
     if (entity->getX() == newX && entity->getY() == newY) {
       if (this->handleCollisionWith(entity)) {
-        this->moveBy(x, y);
+        this->moveBy(x, y, entities);
         return true;
       } else return false;
     }
