@@ -8,14 +8,7 @@ Boulder::Boulder(int x, int y) {
 };
 
 bool Boulder::handleCollisionWith(std::shared_ptr<Entity> entity) {
-  if (entity->typeName == "Boulder") {
-    if (this->x < entity->getX()) entity->moveBy(1, 0);
-    if (this->x > entity->getX()) entity->moveBy(-1, 0);
-    if (this->y < entity->getY()) entity->moveBy(0, 1);
-    if (this->y > entity->getY()) entity->moveBy(0, -1);
-  }
-
-  if (entity->typeName == "Wall") {
+  if (entity->typeName == "Wall" || entity->typeName == "Boulder") {
     return false;
   }
   return true;

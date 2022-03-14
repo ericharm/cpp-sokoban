@@ -17,12 +17,12 @@ CollisionManager* CollisionManager::move(std::shared_ptr<Entity> entity) {
 bool CollisionManager::by(int x, int y) {
   int newX = this->current->getX() + x;
   int newY = this->current->getY() + y;
+  std::shared_ptr<Entity> original = this->current;
   for (std::shared_ptr<Entity>& entity : entities) {
-    if (entity->getX() == newX && entity->getY() == newY) {
-      // return false;
-
+    if (!entity->is(this->current) && entity->getX() == newX && entity->getY() == newY) {
       if (this->current->handleCollisionWith(entity)) {
-        this->current->moveBy(x, y);
+        bool moved = this->move(entity)->by(x, y);
+        if (moved) original->moveBy(x, y);
         return true;
       } else return false;
     }

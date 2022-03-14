@@ -1,6 +1,7 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 #include <curses.h>
+#include <memory>
 #include <vector>
 #include <string>
 
@@ -13,7 +14,7 @@ class Entity {
     virtual void render(WINDOW * win);
     virtual void moveBy(int x, int y);
     virtual bool handleCollisionWith(std::shared_ptr<Entity> entity);
-
+    virtual bool is(std::shared_ptr<Entity>);
     // virtual bool moveBy(int x, int y, std::vector<std::shared_ptr<Entity>>);
     virtual void moveTo(int x, int y);
     virtual int getX();

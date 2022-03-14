@@ -21,7 +21,7 @@ void Level::handleInput(int key) {
       this->collisionManager->move(this->player)->by(0, -1);
       break;
     case KEY_LEFT:
-      this->collisionManager->move(this->player)->by(-1, -0);
+      this->collisionManager->move(this->player)->by(-1, 0);
       break;
     case KEY_RIGHT:
       this->collisionManager->move(this->player)->by(1, 0);

@@ -8,13 +8,6 @@ Player::Player(int x, int y) {
 }
 
 bool Player::handleCollisionWith(std::shared_ptr<Entity> entity) {
-  if (entity->typeName == "Boulder") { //  && entity->handleCollisionWith(this)) {
-    if (this->x < entity->getX()) entity->moveBy(1, 0);
-    if (this->x > entity->getX()) entity->moveBy(-1, 0);
-    if (this->y < entity->getY()) entity->moveBy(0, 1);
-    if (this->y > entity->getY()) entity->moveBy(0, -1);
-  }
-
   if (entity->typeName == "Wall") {
     return false;
   }
