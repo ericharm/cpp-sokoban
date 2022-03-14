@@ -1,4 +1,5 @@
 #include <fstream>
+#include <memory>
 #include "Config.h"
 #include "entities/Boulder.h"
 #include "entities/Player.h"
@@ -8,21 +9,22 @@
 Level::Level() {
   this->player = std::shared_ptr<Player>(new Player(0, 0));
   this->placeEntities();
+  this->collisionManager = CollisionManager::forEntities(this->entities);
 }
 
 void Level::handleInput(int key) {
   switch (key) {
     case KEY_DOWN:
-      this->player->moveBy(0, 1, this->entities);
+      this->collisionManager->move(this->player)->by(0, 1);
       break;
     case KEY_UP:
-      this->player->moveBy(0, -1, this->entities);
+      this->collisionManager->move(this->player)->by(0, -1);
       break;
     case KEY_LEFT:
-      this->player->moveBy(-1, 0, this->entities);
+      this->collisionManager->move(this->player)->by(-1, -0);
       break;
     case KEY_RIGHT:
-      this->player->moveBy(1, 0, this->entities);
+      this->collisionManager->move(this->player)->by(1, 0);
       break;
   }
 }
@@ -39,9 +41,9 @@ void Level::render(WINDOW* win) {
 }
 
 std::vector<std::string> Level::readLevel(std::string fileName) {
-  std::ifstream file = std::ifstream("./data/1a.lvl");
-  std::vector<std::string> lines; 
-  std::string line; 
+  std::ifstream file = std::ifstream(fileName);
+  std::vector<std::string> lines;
+  std::string line;
   while(std::getline(file, line)) lines.push_back(line);
   return lines;
 }

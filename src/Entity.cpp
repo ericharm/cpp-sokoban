@@ -23,21 +23,21 @@ void Entity::moveBy(int x, int y) {
   this->y += y;
 }
 
-bool Entity::moveBy(int x, int y, std::vector<std::shared_ptr<Entity>> entities) {
-  int newX = this->x + x;
-  int newY = this->y + y;
-  for (std::shared_ptr<Entity>& entity : entities) {
-    if (entity->getX() == newX && entity->getY() == newY) {
-      if (this->handleCollisionWith(entity)) {
-        this->moveBy(x, y, entities);
-        return true;
-      } else return false;
-    }
-  }
-
-  this->moveBy(x, y);
-  return true;
-}
+// bool Entity::moveBy(int x, int y, std::vector<std::shared_ptr<Entity>> entities) {
+//   int newX = this->x + x;
+//   int newY = this->y + y;
+//   for (std::shared_ptr<Entity>& entity : entities) {
+//     if (entity->getX() == newX && entity->getY() == newY) {
+//       if (this->handleCollisionWith(entity)) {
+//         this->moveBy(x, y, entities);
+//         return true;
+//       } else return false;
+//     }
+//   }
+// 
+//   this->moveBy(x, y);
+//   return true;
+// }
 
 int Entity::getY() {
   return this->y;

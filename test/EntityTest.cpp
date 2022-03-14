@@ -1,10 +1,5 @@
-#ifndef ENTITY_H
-#define ENTITY_H
-#include <curses.h>
-#include <vector>
-#include <string>
 
-class Entity {
+class EntityTest {
 
   public:
     Entity();
@@ -12,9 +7,7 @@ class Entity {
     virtual ~Entity() = default;
     virtual void render(WINDOW * win);
     virtual void moveBy(int x, int y);
-    virtual bool handleCollisionWith(std::shared_ptr<Entity> entity);
-
-    // virtual bool moveBy(int x, int y, std::vector<std::shared_ptr<Entity>>);
+    virtual bool moveBy(int x, int y, std::vector<std::shared_ptr<Entity>>);
     virtual void moveTo(int x, int y);
     virtual int getX();
     virtual int getY();
@@ -27,8 +20,6 @@ class Entity {
     char character = '?';
 
   private:
+    virtual bool handleCollisionWith(std::shared_ptr<Entity> entity);
 
 };
-
-#endif
-

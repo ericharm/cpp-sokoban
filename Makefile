@@ -2,13 +2,27 @@ CPP=g++
 CPPFLAGS=--std=c++11 -c -g
 OFLAGS=-o ./build/
 
+
+# tests
+
+test: buildtest
+	./build/app
+
+buildtest: compiletests 
+	 $(CPP) build/*.o -o build/app
+
+compiletests: build/game.o
+	 $(CPP) $(CPPFLAGS) test.cpp -o ./build/test.o
+
+# app
+
 all: build/app
 
 run:
-	 make clean && make && ./build/app
+	 make clean && make build/app && ./build/app
 
 build/app: build/main.o
-	 g++ build/*.o -lcurses -o build/app
+	 $(CPP) build/*.o -lcurses -o build/app
 
 build/main.o: build/game.o
 	 $(CPP) $(CPPFLAGS) main.cpp $(OFLAGS)main.o
@@ -16,8 +30,11 @@ build/main.o: build/game.o
 build/game.o: build/entity.o build/level.o
 	 $(CPP) $(CPPFLAGS) src/states/Game.cpp $(OFLAGS)game.o
 
-build/level.o: build/entity.o build/player.o build/boulder.o
+build/level.o: build/entity.o build/player.o build/boulder.o build/collision_manager.o
 	 $(CPP) $(CPPFLAGS) src/Level.cpp $(OFLAGS)level.o
+
+build/collision_manager.o: build/entity.o
+	 $(CPP) $(CPPFLAGS) src/CollisionManager.cpp $(OFLAGS)collision_manager.o
 
 build/player.o: build/entity.o
 	 $(CPP) $(CPPFLAGS) src/entities/Player.cpp $(OFLAGS)player.o
@@ -36,3 +53,4 @@ build:
 
 clean:
 	 rm -rf ./build
+
