@@ -2,18 +2,6 @@ CPP=g++
 CPPFLAGS=--std=c++11 -c -g
 OFLAGS=-o ./build/
 
-
-# tests
-
-test: buildtest
-	./build/app
-
-buildtest: compiletests 
-	 $(CPP) build/*.o -o build/app
-
-compiletests: build/game.o
-	 $(CPP) $(CPPFLAGS) test.cpp -o ./build/test.o
-
 # app
 
 all: build/app
