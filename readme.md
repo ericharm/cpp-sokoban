@@ -1,3 +1,3 @@
-`git clone https://github.com/ericharm/whack.git`
+`git clone https://github.com/ericharm/cpp-sokoban.git`
 
 `make run`
