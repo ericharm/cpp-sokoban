@@ -2,7 +2,9 @@
 #include <stack>
 #include <memory>
 #include <curses.h>
-#include "src/Config.h"
+#include "src/Color.h"
+// #include "src/Config.h"
+#include "src/ScreenPosition.h"
 #include "src/State.h"
 #include "src/states/Game.h"
 
@@ -17,14 +19,15 @@ void signalHandler(int signum) {
 
  WINDOW * getCursesWindow() {
   initscr();
-  WINDOW * win =  newwin(WINDOW_HEIGHT + 1, WINDOW_WIDTH + 1, 1, 1);
+  WINDOW * win =  newwin(LINES, COLS, 0, 0);
   noecho();
   keypad(stdscr, TRUE);
   cbreak();
   curs_set(0);
   start_color();
-  init_pair(1, COLOR_MAGENTA, COLOR_BLACK);
-  init_pair(2, COLOR_CYAN, COLOR_BLACK);
+  init_pair(NoColor, COLOR_WHITE, COLOR_BLACK);
+  init_pair(MagentaColor, COLOR_MAGENTA, COLOR_BLACK);
+  init_pair(CyanColor, COLOR_CYAN, COLOR_BLACK);
   refresh();
   return win;
 }

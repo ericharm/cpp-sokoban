@@ -1,11 +1,7 @@
 #include "Entity.h"
+#include "ScreenPosition.h"
 
 Entity::Entity() {
-  this->x = 0;
-  this->y = 0;
-  this->color = 0;
-  this->character = '?';
-  this->typeName = "Entity";
 }
 
 Entity::Entity(int x, int y) {
@@ -32,16 +28,16 @@ int Entity::getX() {
 }
 
 void Entity::render(WINDOW * win) {
-  mvwaddch(win, this->y, this->x, this->character | COLOR_PAIR(this->color));
+  mvwaddch(win, this->y + ScreenPosition::yOffset, this->x + ScreenPosition::xOffset, this->character | COLOR_PAIR(this->color));
 }
 
 bool Entity::handleCollisionWith(std::shared_ptr<Entity> entity) {
-  if (entity->typeName == "Wall") {
+  if (entity->type == WallType) {
     return false;
   }
   return true;
 }
 
 bool Entity::is(std::shared_ptr<Entity> e) {
-  return this->getX() == e->getX() && this->getY() == e->getY() && e->typeName == e->typeName;
+  return this->getX() == e->getX() && this->getY() == e->getY() && e->type == e->type;
 }

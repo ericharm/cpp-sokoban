@@ -9,8 +9,8 @@ class Wall: public Entity {
     Wall(int x, int y) {
       this->moveTo(x, y);
       this->character = '#';
-      this->color = 0;
-      this->typeName = "Wall";
+      this->color = NoColor;
+      this->type = WallType;
     };
 };
 #endif

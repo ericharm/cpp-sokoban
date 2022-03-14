@@ -4,6 +4,8 @@
 #include <memory>
 #include <vector>
 #include <string>
+#include "EntityType.h"
+#include "Color.h"
 
 class Entity {
 
@@ -12,19 +14,18 @@ class Entity {
     Entity(int x, int y);
     virtual ~Entity() = default;
     virtual void render(WINDOW * win);
-    virtual void moveBy(int x, int y);
     virtual bool handleCollisionWith(std::shared_ptr<Entity> entity);
     virtual bool is(std::shared_ptr<Entity>);
-    // virtual bool moveBy(int x, int y, std::vector<std::shared_ptr<Entity>>);
     virtual void moveTo(int x, int y);
+    virtual void moveBy(int x, int y);
     virtual int getX();
     virtual int getY();
-    std::string typeName; // replace with enum
+    EntityType type = NoneType;
 
   protected:
-    int x;
-    int y;
-    int color = 0; // move this to an enum
+    int x = 0;
+    int y = 0;
+    Color color = NoColor;
     char character = '?';
 
   private:

@@ -3,12 +3,12 @@
 Player::Player(int x, int y) {
   this->moveTo(x, y);
   this->character = '@';
-  this->color = 1;
-  this->typeName = "Player";
+  this->color = MagentaColor;
+  this->type = PlayerType;
 }
 
 bool Player::handleCollisionWith(std::shared_ptr<Entity> entity) {
-  if (entity->typeName == "Wall") {
+  if (entity->type == WallType) {
     return false;
   }
   return true;

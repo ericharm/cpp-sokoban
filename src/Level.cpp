@@ -1,6 +1,6 @@
 #include <fstream>
 #include <memory>
-#include "Config.h"
+#include "ScreenPosition.h"
 #include "entities/Boulder.h"
 #include "entities/Player.h"
 #include "entities/Wall.h"
@@ -33,6 +33,8 @@ void Level::update() {
 }
 
 void Level::render(WINDOW* win) {
+  ScreenPosition::xOffset = (COLS / 2 - this->width / 2) - 2;
+  ScreenPosition::yOffset = (LINES / 2 - this->height / 2) - 2;
   for (std::shared_ptr<Entity>& entity : entities) {
     entity->render(win);
   }
@@ -55,8 +57,10 @@ void Level::placeEntities() {
   for (std::string& line : fileData) {
     int column = 0;
     row++;
+    if (row > this->height) this->height = row;
     for (char& character: line) {
       column++;
+      if (column > this->width) this->width = column;
       switch (character) {
         case '0':
           this->entities.push_back(std::shared_ptr<Boulder>(new Boulder(column, row)));

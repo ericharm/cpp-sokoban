@@ -14,6 +14,8 @@ class Level {
     void update();
 
   private:
+    int width;
+    int height;
     std::unique_ptr<CollisionManager> collisionManager;
     std::shared_ptr<Player> player;
     std::vector<std::shared_ptr<Entity>> entities;
