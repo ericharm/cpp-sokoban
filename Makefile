@@ -12,8 +12,11 @@ run:
 build/app: build/main.o
 	$(CPP) build/*.o -lcurses -o build/app
 
-build/main.o: build/main_menu.o
+build/main.o: build/main_menu.o build/state_stack.o
 	$(CPP) $(CPPFLAGS) main.cpp $(OFLAGS)main.o
+
+build/state_stack.o: build
+	$(CPP) $(CPPFLAGS) src/StateStack.cpp $(OFLAGS)state_stack.o
 
 build/main_menu.o: build/game.o build/point.o
 	$(CPP) $(CPPFLAGS) src/states/MainMenu.cpp $(OFLAGS)main_menu.o

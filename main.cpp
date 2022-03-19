@@ -1,13 +1,10 @@
 #include <iostream>
-#include <stack>
-#include <memory>
 #include <curses.h>
 #include "src/Color.h"
-// #include "src/Config.h"
 #include "src/ScreenPosition.h"
 #include "src/State.h"
-/* #include "src/states/Game.h" */
 #include "src/states/MainMenu.h"
+#include "src/StateStack.h"
 
 void signalHandler(int signum) {
   std::cout << "Interrupt signal (" << signum << ") received.\n";
@@ -29,10 +26,8 @@ void initColors() {
 WINDOW * getCursesWindow() {
   initscr();
   WINDOW * win =  newwin(LINES, COLS, 0, 0);
-  /* noecho(); */
   keypad(stdscr, TRUE);
   cbreak();
-  /* curs_set(0); */
   curs_set(1);
   initColors();
   refresh();
@@ -42,10 +37,10 @@ WINDOW * getCursesWindow() {
 int main() {
   WINDOW * win = getCursesWindow();
   try {
-    std::stack<std::unique_ptr<State>> states;
-    states.push(std::unique_ptr<MainMenu>(new MainMenu()));
+    StateStack states;
+    states.push(new MainMenu());
     while (!states.empty()) {
-      std::unique_ptr<State>& state = states.top();
+      std::unique_ptr<State>& state = states.peek();
       wclear(win);
       state->render(win);
       wborder(win, 0, 0, 0, 0, 0, 0, 0, 0);

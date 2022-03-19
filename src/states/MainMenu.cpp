@@ -30,6 +30,8 @@ void MainMenu::handleInput(int key) {
     case KEY_UP:
       this->previousOption();
       break;
+    case KEY_ENTER:
+      break;
   }
 }
 
