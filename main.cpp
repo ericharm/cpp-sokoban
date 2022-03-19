@@ -6,7 +6,8 @@
 // #include "src/Config.h"
 #include "src/ScreenPosition.h"
 #include "src/State.h"
-#include "src/states/Game.h"
+/* #include "src/states/Game.h" */
+#include "src/states/MainMenu.h"
 
 void signalHandler(int signum) {
   std::cout << "Interrupt signal (" << signum << ") received.\n";
@@ -17,17 +18,22 @@ void signalHandler(int signum) {
   exit(signum);
 }
 
- WINDOW * getCursesWindow() {
+void initColors() {
+  start_color();
+  init_pair(NoColor, COLOR_WHITE, COLOR_BLACK);
+  init_pair(MagentaColor, COLOR_MAGENTA, COLOR_BLACK);
+  init_pair(CyanColor, COLOR_CYAN, COLOR_BLACK);
+  init_pair(GreenColor, COLOR_GREEN, COLOR_BLACK);
+}
+
+WINDOW * getCursesWindow() {
   initscr();
   WINDOW * win =  newwin(LINES, COLS, 0, 0);
   noecho();
   keypad(stdscr, TRUE);
   cbreak();
   curs_set(0);
-  start_color();
-  init_pair(NoColor, COLOR_WHITE, COLOR_BLACK);
-  init_pair(MagentaColor, COLOR_MAGENTA, COLOR_BLACK);
-  init_pair(CyanColor, COLOR_CYAN, COLOR_BLACK);
+  initColors();
   refresh();
   return win;
 }
@@ -36,7 +42,7 @@ int main() {
   WINDOW * win = getCursesWindow();
   try {
     std::stack<std::unique_ptr<State>> states;
-    states.push(std::unique_ptr<Game>(new Game()));
+    states.push(std::unique_ptr<MainMenu>(new MainMenu()));
     while (!states.empty()) {
       std::unique_ptr<State>& state = states.top();
       wclear(win);

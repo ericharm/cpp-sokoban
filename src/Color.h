@@ -4,7 +4,8 @@
 enum Color {
   NoColor,
   MagentaColor,
-  CyanColor
+  CyanColor,
+  GreenColor,
 };
 
 #endif

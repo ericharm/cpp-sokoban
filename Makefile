@@ -12,8 +12,11 @@ run:
 build/app: build/main.o
 	$(CPP) build/*.o -lcurses -o build/app
 
-build/main.o: build/game.o
+build/main.o: build/main_menu.o
 	$(CPP) $(CPPFLAGS) main.cpp $(OFLAGS)main.o
+
+build/main_menu.o: build/game.o build/point.o
+	$(CPP) $(CPPFLAGS) src/states/MainMenu.cpp $(OFLAGS)main_menu.o
 
 build/game.o: build/entity.o build/level.o
 	$(CPP) $(CPPFLAGS) src/states/Game.cpp $(OFLAGS)game.o
@@ -32,6 +35,9 @@ build/boulder.o: build/entity.o
 
 build/entity.o: build build/screen_position.o
 	$(CPP) $(CPPFLAGS) src/Entity.cpp $(OFLAGS)entity.o
+
+build/point.o: build
+	$(CPP) $(CPPFLAGS) src/Point.cpp $(OFLAGS)point.o
 
 build/screen_position.o: build
 	$(CPP) $(CPPFLAGS) src/ScreenPosition.cpp $(OFLAGS)screen_position.o

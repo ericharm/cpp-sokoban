@@ -22,9 +22,12 @@ bool CollisionManager::by(int x, int y) {
     if (!entity->is(this->current) && entity->getX() == newX && entity->getY() == newY) {
       if (this->current->handleCollisionWith(entity)) {
         bool moved = this->move(entity)->by(x, y);
-        if (moved) original->moveBy(x, y);
-        return true;
-      } else return false;
+        if (moved) {
+          original->moveBy(x, y);
+          return true;
+        }
+      } 
+      return false;
     }
   }
 
