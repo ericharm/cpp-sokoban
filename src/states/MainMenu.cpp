@@ -2,6 +2,14 @@
 #include <curses.h>
 #include "../ScreenPosition.h"
 #include "../Color.h"
+#include "../StateStack.h"
+#include "../states/Game.h"
+
+enum MenuOptions {
+  PlayOption,
+  InstructionsOption,
+  QuitOption
+};
 
 MainMenu::MainMenu() {
   struct MenuOption play, instructions, quit;
@@ -15,9 +23,9 @@ MainMenu::MainMenu() {
   quit.label = "Exit";
   quit.location = new Point(0, 8);
 
-  options[0] = play;
-  options[1] = instructions;
-  options[2] = quit;
+  options[PlayOption] = play;
+  options[InstructionsOption] = instructions;
+  options[QuitOption] = quit;
 
   this->currentOption = 0;
 }
@@ -30,7 +38,8 @@ void MainMenu::handleInput(int key) {
     case KEY_UP:
       this->previousOption();
       break;
-    case KEY_ENTER:
+    case '\n':
+      this->selectCurrentOption();
       break;
   }
 }
@@ -96,4 +105,19 @@ void MainMenu::previousOption() {
   if (this->currentOption > 0) {
     this->currentOption--;
   } else this->currentOption = 2;
+}
+
+void MainMenu::selectCurrentOption() {
+  switch (this->currentOption) {
+    case PlayOption: {
+      StateStack* states = StateStack::getInstance();
+      states->push(new Game());
+      break;
+     }
+    case InstructionsOption:
+      break;
+    case QuitOption:
+      exit(0);
+      break;
+  }
 }

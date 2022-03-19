@@ -23,6 +23,7 @@ class MainMenu: public State {
     void drawCursor(WINDOW* win);
     void nextOption();
     void previousOption();
+    void selectCurrentOption();
     int width = 7;
     int height = 10;
     MenuOption options [3];

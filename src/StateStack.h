@@ -7,15 +7,17 @@
 class StateStack {
 
   public:
-    StateStack();
     /* void trade(State state); */
-    /* void push(std::unique_ptr<State>& state); */
     void push(State* state);
     /* void pop(); */
     bool empty();
+    static StateStack* getInstance();
     std::unique_ptr<State>& peek();
 
   private:
+    StateStack();
     std::stack<std::unique_ptr<State>> states;
+    static StateStack* instance;
+
 };
-#endif // !STATESTACK_H
+#endif

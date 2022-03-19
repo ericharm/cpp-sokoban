@@ -37,10 +37,10 @@ WINDOW * getCursesWindow() {
 int main() {
   WINDOW * win = getCursesWindow();
   try {
-    StateStack states;
-    states.push(new MainMenu());
-    while (!states.empty()) {
-      std::unique_ptr<State>& state = states.peek();
+    StateStack* states = StateStack::getInstance();
+    states->push(new MainMenu());
+    while (!states->empty()) {
+      std::unique_ptr<State>& state = states->peek();
       wclear(win);
       state->render(win);
       wborder(win, 0, 0, 0, 0, 0, 0, 0, 0);

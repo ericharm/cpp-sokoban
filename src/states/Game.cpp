@@ -1,6 +1,7 @@
 #include "Game.h"
 
 Game::Game() {
+  curs_set(0);
   this->level = std::unique_ptr<Level>(new Level());
 }
 
