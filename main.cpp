@@ -29,10 +29,11 @@ void initColors() {
 WINDOW * getCursesWindow() {
   initscr();
   WINDOW * win =  newwin(LINES, COLS, 0, 0);
-  noecho();
+  /* noecho(); */
   keypad(stdscr, TRUE);
   cbreak();
-  curs_set(0);
+  /* curs_set(0); */
+  curs_set(1);
   initColors();
   refresh();
   return win;

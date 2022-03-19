@@ -20,9 +20,13 @@ class MainMenu: public State {
   private:
     void drawTitle(WINDOW* win);
     void drawOptions(WINDOW* win);
+    void drawCursor(WINDOW* win);
+    void nextOption();
+    void previousOption();
     int width = 7;
     int height = 10;
     MenuOption options [3];
+    int currentOption;
 
 };
 #endif

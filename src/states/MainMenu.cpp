@@ -18,9 +18,19 @@ MainMenu::MainMenu() {
   options[0] = play;
   options[1] = instructions;
   options[2] = quit;
+
+  this->currentOption = 0;
 }
 
 void MainMenu::handleInput(int key) {
+  switch (key) {
+    case KEY_DOWN:
+      this->nextOption();
+      break;
+    case KEY_UP:
+      this->previousOption();
+      break;
+  }
 }
 
 void MainMenu::update() {
@@ -32,6 +42,7 @@ void MainMenu::render(WINDOW* win) {
 
   this->drawTitle(win);
   this->drawOptions(win);
+  this->drawCursor(win);
 }
 
 void MainMenu::drawTitle(WINDOW* win) {
@@ -62,4 +73,25 @@ void MainMenu::drawOptions(WINDOW* win) {
       option.label
     );
   }
+}
+
+void MainMenu::drawCursor(WINDOW* win) {
+  MenuOption* option = &this->options[this->currentOption];
+  wmove(
+    win,
+    ScreenPosition::yOffset + option->location->y,
+    ScreenPosition::xOffset + option->location->x - 2
+  );
+}
+
+void MainMenu::nextOption() {
+  if (this->currentOption < 2) {
+    this->currentOption++;
+  } else this->currentOption = 0;
+}
+
+void MainMenu::previousOption() {
+  if (this->currentOption > 0) {
+    this->currentOption--;
+  } else this->currentOption = 2;
 }
