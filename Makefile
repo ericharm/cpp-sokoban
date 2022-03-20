@@ -15,14 +15,17 @@ build/app: build/main.o
 build/main.o: build/main_menu.o build/state_stack.o
 	$(CPP) $(CPPFLAGS) main.cpp $(OFLAGS)main.o
 
-build/main_menu.o: build/game.o build/point.o build/state_stack.o
+build/main_menu.o: build/game.o build/point.o build/state_stack.o build/stage_select.o
 	$(CPP) $(CPPFLAGS) src/states/MainMenu.cpp $(OFLAGS)main_menu.o
 
-build/state_stack.o: build
-	$(CPP) $(CPPFLAGS) src/StateStack.cpp $(OFLAGS)state_stack.o
+build/stage_select.o: build/game.o build/point.o build/state_stack.o
+	$(CPP) $(CPPFLAGS) src/states/StageSelect.cpp $(OFLAGS)stage_select.o
 
 build/game.o: build/entity.o build/level.o
 	$(CPP) $(CPPFLAGS) src/states/Game.cpp $(OFLAGS)game.o
+
+build/state_stack.o: build
+	$(CPP) $(CPPFLAGS) src/StateStack.cpp $(OFLAGS)state_stack.o
 
 build/level.o: build/entity.o build/player.o build/boulder.o build/collision_manager.o build/screen_position.o
 	$(CPP) $(CPPFLAGS) src/Level.cpp $(OFLAGS)level.o

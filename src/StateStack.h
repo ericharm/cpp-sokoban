@@ -7,9 +7,9 @@
 class StateStack {
 
   public:
-    /* void trade(State state); */
+    void swap(State* state);
     void push(State* state);
-    /* void pop(); */
+    void pop();
     bool empty();
     static StateStack* getInstance();
     std::unique_ptr<State>& peek();

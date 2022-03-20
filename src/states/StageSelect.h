@@ -1,13 +1,13 @@
-#ifndef MAINMENU_H
-#define MAINMENU_H
+#ifndef STAGESELECT_H
+#define STAGESELECT_H
 #include "../State.h"
 #include "../MenuOption.h"
 #include <string>
 
-class MainMenu: public State {
+class StageSelect : public State {
 
   public:
-    MainMenu();
+    StageSelect();
     void render(WINDOW * win);
     void handleInput(int key);
     void update();
@@ -19,9 +19,9 @@ class MainMenu: public State {
     void nextOption();
     void previousOption();
     void selectCurrentOption();
-    int width = 7;
-    int height = 10;
-    MenuOption options [3];
+    int width = 16;
+    int height = 8;
+    MenuOption options [8];
     int currentOption;
 
 };

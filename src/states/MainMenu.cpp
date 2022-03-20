@@ -3,7 +3,7 @@
 #include "../ScreenPosition.h"
 #include "../Color.h"
 #include "../StateStack.h"
-#include "../states/Game.h"
+#include "../states/StageSelect.h"
 
 enum MenuOptions {
   PlayOption,
@@ -81,7 +81,7 @@ void MainMenu::drawOptions(WINDOW* win) {
       win,
       ScreenPosition::yOffset + option.location->y,
       ScreenPosition::xOffset + option.location->x,
-      option.label
+      option.label.c_str()
     );
   }
 }
@@ -111,7 +111,7 @@ void MainMenu::selectCurrentOption() {
   switch (this->currentOption) {
     case PlayOption: {
       StateStack* states = StateStack::getInstance();
-      states->push(new Game());
+      states->swap(new StageSelect());
       break;
      }
     case InstructionsOption:

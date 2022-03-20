@@ -6,13 +6,18 @@ StateStack* StateStack::instance = new StateStack();
 
 StateStack::StateStack() {}
 
-/* void StateStack::trade(State state) { } */
+void StateStack::swap(State* state) {
+  this->pop();
+  this->push(state);
+}
 
 void StateStack::push(State* state) {
   this->states.push(std::unique_ptr<State>(state));
 }
 
-/* void StateStack::pop() { } */
+void StateStack::pop() {
+  this->states.pop();
+}
 
 bool StateStack::empty() {
   return this->states.empty();
