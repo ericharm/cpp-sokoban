@@ -22,5 +22,5 @@ target_link_libraries(
   states
   entities
   ${CURSES_LIBRARIES}
-  )
+)
 

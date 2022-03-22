@@ -19,8 +19,8 @@ add_library(
   State.h
   StateStack.h
   StateStack.cpp
-  )
+)
 
 target_include_directories(
   src PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src"
-  )
+)

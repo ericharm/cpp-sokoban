@@ -2,4 +2,4 @@
 
 `cd cpp-sokoban`
 
-`make run`
+`make`

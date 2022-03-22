@@ -9,8 +9,8 @@ add_library(
   MainMenu.cpp
   StageSelect.h
   StageSelect.cpp
-  )
+)
 
 target_include_directories(
   states PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src/states"
-  )
+)
