@@ -13,6 +13,7 @@ StageSelect::StageSelect() {
     int x = stage % 2 == 0 ? 0 : 10;
     int y = stage % 2 == 0 ? stage : stage -1;
     this->options[stage].location = new Point(x, y);
+    this->options[stage].fileName = "./data/" + stageNumber + ".lvl";
   }
 
   this->currentOption = 0;
@@ -66,7 +67,7 @@ void StageSelect::drawTitle(WINDOW* win) {
 }
 
 void StageSelect::drawOptions(WINDOW* win) {
-  for (MenuOption option : this->options) {
+  for (StageSelectOption option : this->options) {
     mvwprintw(
       win,
       ScreenPosition::yOffset + option.location->y,
@@ -77,7 +78,7 @@ void StageSelect::drawOptions(WINDOW* win) {
 }
 
 void StageSelect::drawCursor(WINDOW* win) {
-  MenuOption* option = &this->options[this->currentOption];
+  StageSelectOption* option = &this->options[this->currentOption];
   wmove(
     win,
     ScreenPosition::yOffset + option->location->y,
@@ -98,6 +99,7 @@ void StageSelect::previousOption() {
 }
 
 void StageSelect::selectCurrentOption() {
+  std::string fileName = this->options[this->currentOption].fileName;
   StateStack* states = StateStack::getInstance();
-  states->swap(new Game());
+  states->swap(new Game(fileName));
 }

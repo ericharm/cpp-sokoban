@@ -27,7 +27,7 @@ build/game.o: build/entity.o build/level.o
 build/state_stack.o: build
 	$(CPP) $(CPPFLAGS) src/StateStack.cpp $(OFLAGS)state_stack.o
 
-build/level.o: build/entity.o build/player.o build/boulder.o build/collision_manager.o build/screen_position.o
+build/level.o: build/player.o build/boulder.o build/collision_manager.o build/screen_position.o build/pit.o
 	$(CPP) $(CPPFLAGS) src/Level.cpp $(OFLAGS)level.o
 
 build/collision_manager.o: build/entity.o
@@ -35,6 +35,9 @@ build/collision_manager.o: build/entity.o
 
 build/player.o: build/entity.o
 	$(CPP) $(CPPFLAGS) src/entities/Player.cpp $(OFLAGS)player.o
+
+build/pit.o: build/entity.o
+	$(CPP) $(CPPFLAGS) src/entities/Pit.cpp $(OFLAGS)pit.o
 
 build/boulder.o: build/entity.o
 	$(CPP) $(CPPFLAGS) src/entities/Boulder.cpp $(OFLAGS)boulder.o

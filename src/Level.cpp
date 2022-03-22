@@ -3,12 +3,13 @@
 #include "ScreenPosition.h"
 #include "entities/Boulder.h"
 #include "entities/Player.h"
+#include "entities/Pit.h"
 #include "entities/Wall.h"
 #include "Level.h"
 
-Level::Level() {
+Level::Level(std::string fileName) {
   this->player = std::shared_ptr<Player>(new Player(0, 0));
-  this->placeEntities();
+  this->loadFromFile(fileName);
   this->collisionManager = CollisionManager::forEntities(this->entities);
 }
 
@@ -50,8 +51,8 @@ std::vector<std::string> Level::readLevel(std::string fileName) {
   return lines;
 }
 
-void Level::placeEntities() {
-  std::vector<std::string> fileData = this->readLevel("./data/1a.lvl");
+void Level::loadFromFile(std::string fileName) {
+  std::vector<std::string> fileData = this->readLevel(fileName);
 
   int row = 0;
   for (std::string& line : fileData) {
@@ -67,6 +68,9 @@ void Level::placeEntities() {
           break;
         case '#':
           this->entities.push_back(std::shared_ptr<Wall>(new Wall(column, row)));
+          break;
+        case '^':
+          this->entities.push_back(std::shared_ptr<Pit>(new Pit(column, row)));
           break;
         case '@':
           this->player->moveTo(column, row);

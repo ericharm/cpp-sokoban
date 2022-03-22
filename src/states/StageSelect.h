@@ -1,8 +1,14 @@
 #ifndef STAGESELECT_H
 #define STAGESELECT_H
 #include "../State.h"
-#include "../MenuOption.h"
+#include "../Point.h"
 #include <string>
+
+struct StageSelectOption {
+  std::string label;
+  std::string fileName;
+  Point* location;
+};
 
 class StageSelect : public State {
 
@@ -21,7 +27,7 @@ class StageSelect : public State {
     void selectCurrentOption();
     int width = 16;
     int height = 8;
-    MenuOption options [8];
+    StageSelectOption options [8];
     int currentOption;
 
 };

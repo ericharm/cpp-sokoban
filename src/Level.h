@@ -8,7 +8,7 @@
 class Level {
 
   public:
-    Level();
+    Level(std::string fileName);
     void render(WINDOW * win);
     void handleInput(int key);
     void update();
@@ -20,7 +20,7 @@ class Level {
     std::shared_ptr<Player> player;
     std::vector<std::shared_ptr<Entity>> entities;
     std::vector<std::string> readLevel(std::string fileName);
-    void placeEntities();
+    void loadFromFile(std::string fileName);
 };
 
 #endif

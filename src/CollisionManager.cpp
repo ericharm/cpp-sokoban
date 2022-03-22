@@ -1,4 +1,5 @@
 #include "CollisionManager.h"
+#include "EntityType.h"
 
 CollisionManager::CollisionManager() {
 };
@@ -19,14 +20,21 @@ bool CollisionManager::by(int x, int y) {
   int newY = this->current->getY() + y;
   std::shared_ptr<Entity> original = this->current;
   for (std::shared_ptr<Entity>& entity : entities) {
+
     if (!entity->is(this->current) && entity->getX() == newX && entity->getY() == newY) {
+
+      if (original->type == BoulderType && entity->type == PitType) {
+        return false;
+      }
+
       if (this->current->handleCollisionWith(entity)) {
         bool moved = this->move(entity)->by(x, y);
         if (moved) {
           original->moveBy(x, y);
           return true;
         }
-      } 
+      }
+
       return false;
     }
   }
