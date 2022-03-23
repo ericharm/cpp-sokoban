@@ -7,12 +7,12 @@ class CollisionManager {
 
   public:
     CollisionManager();
-    static std::unique_ptr<CollisionManager> forEntities(std::vector<std::shared_ptr<Entity>> entities);
+    static std::unique_ptr<CollisionManager> forEntities(std::vector<std::shared_ptr<Entity>>* entities);
     CollisionManager* move(std::shared_ptr<Entity> entity);
     bool by(int x, int y);
 
   private:
-    std::vector<std::shared_ptr<Entity>> entities;
+    std::vector<std::shared_ptr<Entity>>* entities;
     std::shared_ptr<Entity> current;
 };
 

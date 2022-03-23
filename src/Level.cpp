@@ -14,7 +14,7 @@
 Level::Level(std::string fileName) {
   this->player = std::shared_ptr<Player>(new Player(0, 0));
   this->loadFromFile(fileName);
-  this->collisionManager = CollisionManager::forEntities(this->entities);
+  this->collisionManager = CollisionManager::forEntities(&this->entities);
 }
 
 void Level::handleInput(int key) {
@@ -35,8 +35,6 @@ void Level::handleInput(int key) {
 }
 
 void Level::update() {
-  this->collisionManager = CollisionManager::forEntities(this->entities);
-
   auto removers = std::remove_if(
       this->entities.begin(), this->entities.end(), std::mem_fn(&Entity::markedForRemoval)
   );
