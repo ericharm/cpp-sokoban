@@ -8,7 +8,7 @@ Player::Player(int x, int y) {
 }
 
 bool Player::handleCollisionWith(std::shared_ptr<Entity> entity) {
-  if (entity->type == WallType) {
+  if (entity->type == WallType || entity->type == PitType) {
     return false;
   }
   return true;
