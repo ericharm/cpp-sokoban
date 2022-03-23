@@ -9,6 +9,8 @@ add_library(
   MainMenu.cpp
   StageSelect.h
   StageSelect.cpp
+  Victory.h
+  Victory.cpp
 )
 
 target_include_directories(

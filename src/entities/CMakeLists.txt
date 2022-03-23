@@ -5,6 +5,8 @@ add_library(
   entities
   Boulder.h
   Boulder.cpp
+  Exit.h
+  Exit.cpp
   Pit.h
   Pit.cpp
   Player.h

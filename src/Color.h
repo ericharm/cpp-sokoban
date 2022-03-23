@@ -6,6 +6,7 @@ enum Color {
   MagentaColor,
   CyanColor,
   GreenColor,
+  YellowColor,
 };
 
 #endif

@@ -12,6 +12,7 @@ enum MenuOptions {
 };
 
 MainMenu::MainMenu() {
+  curs_set(1);
   struct MenuOption play, instructions, quit;
 
   play.label = "Play";

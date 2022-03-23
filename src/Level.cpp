@@ -9,6 +9,7 @@
 #include "entities/Player.h"
 #include "entities/Pit.h"
 #include "entities/Wall.h"
+#include "entities/Exit.h"
 #include "Level.h"
 
 Level::Level(std::string fileName) {
@@ -79,6 +80,9 @@ void Level::loadFromFile(std::string fileName) {
           break;
         case '^':
           this->entities.push_back(std::shared_ptr<Pit>(new Pit(column, row)));
+          break;
+        case 'X':
+          this->entities.push_back(std::shared_ptr<Exit>(new Exit(column, row)));
           break;
         case '@':
           this->player->moveTo(column, row);

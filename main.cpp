@@ -21,6 +21,7 @@ void initColors() {
   init_pair(MagentaColor, COLOR_MAGENTA, COLOR_BLACK);
   init_pair(CyanColor, COLOR_CYAN, COLOR_BLACK);
   init_pair(GreenColor, COLOR_GREEN, COLOR_BLACK);
+  init_pair(YellowColor, COLOR_YELLOW, COLOR_BLACK);
 }
 
 WINDOW * getCursesWindow() {
