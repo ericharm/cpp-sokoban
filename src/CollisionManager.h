@@ -9,7 +9,6 @@ class CollisionManager {
     CollisionManager();
     static std::unique_ptr<CollisionManager> forEntities(std::vector<std::shared_ptr<Entity>> entities);
     CollisionManager* move(std::shared_ptr<Entity> entity);
-    // void to(int x, int y);
     bool by(int x, int y);
 
   private:

@@ -25,6 +25,7 @@ class StageSelect : public State {
     void nextOption();
     void previousOption();
     void selectCurrentOption();
+    void back();
     int width = 16;
     int height = 8;
     StageSelectOption options [8];

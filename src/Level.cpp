@@ -1,5 +1,9 @@
+#include <algorithm>
 #include <fstream>
+#include <functional>
 #include <memory>
+#include <string>
+#include "Logger.h"
 #include "ScreenPosition.h"
 #include "entities/Boulder.h"
 #include "entities/Player.h"
@@ -31,6 +35,12 @@ void Level::handleInput(int key) {
 }
 
 void Level::update() {
+  this->collisionManager = CollisionManager::forEntities(this->entities);
+
+  auto removers = std::remove_if(
+      this->entities.begin(), this->entities.end(), std::mem_fn(&Entity::markedForRemoval)
+  );
+  this->entities.erase(removers, this->entities.end());
 }
 
 void Level::render(WINDOW* win) {

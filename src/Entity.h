@@ -20,7 +20,9 @@ class Entity {
     virtual void moveBy(int x, int y);
     virtual int getX();
     virtual int getY();
+    virtual void remove();
     EntityType type = NoneType;
+    bool markedForRemoval = false;
 
   protected:
     int x = 0;

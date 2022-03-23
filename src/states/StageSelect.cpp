@@ -5,6 +5,7 @@
 #include "../Color.h"
 #include "../StateStack.h"
 #include "../states/Game.h"
+#include "../states/MainMenu.h"
 
 StageSelect::StageSelect() {
   for (int stage = 0; stage < 8; stage++) {
@@ -36,6 +37,9 @@ void StageSelect::handleInput(int key) {
       break;
     case KEY_LEFT:
       this->previousOption();
+      break;
+    case 27: // ESC
+      this->back();
       break;
     case '\n':
       this->selectCurrentOption();
@@ -96,6 +100,11 @@ void StageSelect::previousOption() {
   if (this->currentOption > 0) {
     this->currentOption--;
   } else this->currentOption = 7;
+}
+
+void StageSelect::back() {
+  StateStack* states = StateStack::getInstance();
+  states->swap(new MainMenu());
 }
 
 void StageSelect::selectCurrentOption() {

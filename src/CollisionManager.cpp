@@ -1,5 +1,7 @@
 #include "CollisionManager.h"
 #include "EntityType.h"
+#include "Logger.h"
+#include <string>
 
 CollisionManager::CollisionManager() {
 };
@@ -22,12 +24,20 @@ bool CollisionManager::by(int x, int y) {
   for (std::shared_ptr<Entity>& entity : entities) {
 
     if (!entity->is(this->current) && entity->getX() == newX && entity->getY() == newY) {
+      Logger::log(std::to_string(entities.size()) + " entities");
+
+      Logger::log(
+          std::to_string(this->current->type) +
+          " collided with " + std::to_string(entity->type)
+      );
 
       if (original->type == BoulderType && entity->type == PitType) {
+        original->remove();
+        entity->remove();
         return false;
       }
 
-      if (this->current->handleCollisionWith(entity)) {
+      else if (this->current->handleCollisionWith(entity)) {
         bool moved = this->move(entity)->by(x, y);
         if (moved) {
           original->moveBy(x, y);
@@ -38,6 +48,8 @@ bool CollisionManager::by(int x, int y) {
       return false;
     }
   }
+
+  Logger::log(std::to_string(this->current->type) + " did not collide with anything");
 
   current->moveBy(x, y);
   return true;

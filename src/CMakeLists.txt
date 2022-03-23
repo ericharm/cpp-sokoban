@@ -11,6 +11,8 @@ add_library(
   EntityType.h
   Level.h
   Level.cpp
+  Logger.h
+  Logger.cpp
   MenuOption.h
   Point.h
   Point.cpp
