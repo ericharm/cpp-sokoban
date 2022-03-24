@@ -1,5 +1,6 @@
 #include <iostream>
 #include <curses.h>
+#include <memory>
 #include "src/Color.h"
 #include "src/ScreenPosition.h"
 #include "src/State.h"
@@ -39,7 +40,7 @@ int main() {
   WINDOW * win = getCursesWindow();
   try {
     StateStack* states = StateStack::getInstance();
-    states->push(new MainMenu());
+    states->push(std::make_unique<MainMenu>());
     while (!states->empty()) {
       std::unique_ptr<State>& state = states->peek();
       wclear(win);

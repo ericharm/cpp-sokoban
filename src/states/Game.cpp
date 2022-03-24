@@ -1,14 +1,15 @@
 #include "Game.h"
+#include <memory>
 
 Game::Game() {
   curs_set(0);
-  this->level = std::unique_ptr<Level>(new Level("./data/1.lvl"));
+  this->level = std::make_unique<Level>("./data/1.lvl");
 }
 
 
 Game::Game(std::string fileName) {
   curs_set(0);
-  this->level = std::unique_ptr<Level>(new Level(fileName));
+  this->level = std::make_unique<Level>(fileName);
 }
 
 void Game::handleInput(int key) {

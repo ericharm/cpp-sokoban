@@ -7,8 +7,8 @@
 class StateStack {
 
   public:
-    void swap(State* state);
-    void push(State* state);
+    void swap(std::unique_ptr<State> state);
+    void push(std::unique_ptr<State> state);
     void pop();
     bool empty();
     static StateStack* getInstance();

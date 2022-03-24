@@ -4,15 +4,17 @@
 
 StateStack* StateStack::instance = new StateStack();
 
-StateStack::StateStack() {}
-
-void StateStack::swap(State* state) {
-  this->pop();
-  this->push(state);
+StateStack::StateStack() {
+  states = std::stack<std::unique_ptr<State>>();
 }
 
-void StateStack::push(State* state) {
-  this->states.push(std::unique_ptr<State>(state));
+void StateStack::swap(std::unique_ptr<State> state) {
+  this->pop();
+  this->push(move(state));
+}
+
+void StateStack::push(std::unique_ptr<State> state) {
+  this->states.push(move(state));
 }
 
 void StateStack::pop() {

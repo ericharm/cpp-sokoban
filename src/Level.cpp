@@ -74,13 +74,13 @@ void Level::removeDeadEntities() {
 void Level::proceedIfCompleted() {
   if (this->player->victorious) {
     StateStack* states = StateStack::getInstance();
-    states->swap(new Victory());
+    states->swap(std::make_unique<Victory>());
   }
 }
 
 void Level::quitToMainMenu() {
     StateStack* states = StateStack::getInstance();
-    states->swap(new MainMenu());
+    states->swap(std::make_unique<MainMenu>());
 }
 
 void Level::loadFromFile(std::string fileName) {

@@ -6,9 +6,9 @@ CollisionManager::CollisionManager() {
 };
 
 std::unique_ptr<CollisionManager> CollisionManager::forEntities(std::vector<std::shared_ptr<Entity>>* entities) {
-  CollisionManager* cm = new CollisionManager();
-  cm->entities = entities;
-  return std::unique_ptr<CollisionManager>(cm);
+  auto collisionManager = std::make_unique<CollisionManager>();
+  collisionManager->entities = entities;
+  return std::move(collisionManager);
 }
 
 CollisionManager* CollisionManager::move(std::shared_ptr<Entity> entity) {

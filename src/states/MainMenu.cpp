@@ -1,5 +1,6 @@
 #include "MainMenu.h"
 #include <curses.h>
+#include <memory>
 #include "../ScreenPosition.h"
 #include "../Color.h"
 #include "../StateStack.h"
@@ -112,7 +113,7 @@ void MainMenu::selectCurrentOption() {
   switch (this->currentOption) {
     case PlayOption: {
       StateStack* states = StateStack::getInstance();
-      states->swap(new StageSelect());
+      states->swap(std::make_unique<StageSelect>());
       break;
      }
     case InstructionsOption:

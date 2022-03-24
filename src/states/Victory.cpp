@@ -1,4 +1,5 @@
 #include <curses.h>
+#include <memory>
 #include "MainMenu.h"
 #include "Victory.h"
 #include "../ScreenPosition.h"
@@ -38,5 +39,5 @@ void Victory::writeMessage(WINDOW* win) {
 
 void Victory::returnToMainMenu() {
   StateStack* states = StateStack::getInstance();
-  states->swap(new MainMenu());
+  states->swap(std::make_unique<MainMenu>());
 }

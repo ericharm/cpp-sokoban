@@ -1,5 +1,6 @@
 #include "StageSelect.h"
 #include <curses.h>
+#include <memory>
 #include <string>
 #include "../ScreenPosition.h"
 #include "../Color.h"
@@ -104,11 +105,11 @@ void StageSelect::previousOption() {
 
 void StageSelect::back() {
   StateStack* states = StateStack::getInstance();
-  states->swap(new MainMenu());
+  states->swap(std::make_unique<MainMenu>());
 }
 
 void StageSelect::selectCurrentOption() {
   std::string fileName = this->options[this->currentOption].fileName;
   StateStack* states = StateStack::getInstance();
-  states->swap(new Game(fileName));
+  states->swap(std::make_unique<Game>(fileName));
 }
