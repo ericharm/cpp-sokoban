@@ -5,11 +5,14 @@
 #include <string>
 #include "Logger.h"
 #include "ScreenPosition.h"
+#include "StateStack.h"
 #include "entities/Boulder.h"
 #include "entities/Player.h"
 #include "entities/Pit.h"
 #include "entities/Wall.h"
 #include "entities/Exit.h"
+#include "states/MainMenu.h"
+#include "states/Victory.h"
 #include "Level.h"
 
 Level::Level(std::string fileName) {
@@ -32,14 +35,15 @@ void Level::handleInput(int key) {
     case KEY_RIGHT:
       this->collisionManager->move(this->player)->by(1, 0);
       break;
+    case 27: // ESC
+      this->quitToMainMenu();
+      break;
   }
 }
 
 void Level::update() {
-  auto removers = std::remove_if(
-      this->entities.begin(), this->entities.end(), std::mem_fn(&Entity::markedForRemoval)
-  );
-  this->entities.erase(removers, this->entities.end());
+  this->removeDeadEntities();
+  this->proceedIfCompleted();
 }
 
 void Level::render(WINDOW* win) {
@@ -58,6 +62,25 @@ std::vector<std::string> Level::readLevel(std::string fileName) {
   std::string line;
   while(std::getline(file, line)) lines.push_back(line);
   return lines;
+}
+
+void Level::removeDeadEntities() {
+  auto removers = std::remove_if(
+      this->entities.begin(), this->entities.end(), std::mem_fn(&Entity::markedForRemoval)
+  );
+  this->entities.erase(removers, this->entities.end());
+};
+
+void Level::proceedIfCompleted() {
+  if (this->player->victorious) {
+    StateStack* states = StateStack::getInstance();
+    states->swap(new Victory());
+  }
+}
+
+void Level::quitToMainMenu() {
+    StateStack* states = StateStack::getInstance();
+    states->swap(new MainMenu());
 }
 
 void Level::loadFromFile(std::string fileName) {

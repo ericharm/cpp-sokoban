@@ -1,6 +1,5 @@
 #include "Player.h"
 #include "../Logger.h"
-#include "../StateStack.h"
 #include "../states/Victory.h"
 
 Player::Player(int x, int y) {
@@ -14,9 +13,13 @@ bool Player::handleCollisionWith(std::shared_ptr<Entity> entity) {
   if (entity->type == WallType || entity->type == PitType) {
     return false;
   }
+
+  /* if (entity->type == BoulderType) { */
+  /*   if (entity->move */
+  /* } */
+
   if (entity->type == ExitType) {
-    StateStack* states = StateStack::getInstance();
-    states->push(new Victory());
+    this->victorious = true;
   }
   return true;
 }

@@ -21,6 +21,9 @@ class Level {
     std::vector<std::shared_ptr<Entity>> entities;
     std::vector<std::string> readLevel(std::string fileName);
     void loadFromFile(std::string fileName);
+    void removeDeadEntities();
+    void proceedIfCompleted();
+    void quitToMainMenu();
 };
 
 #endif

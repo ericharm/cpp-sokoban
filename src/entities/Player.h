@@ -8,7 +8,7 @@ class Player: public Entity {
   public:
     Player(int x, int y);
     bool handleCollisionWith(std::shared_ptr<Entity> entity);
-
+    bool victorious = false;
 
 };
 #endif

@@ -49,11 +49,11 @@ int main() {
       state->handleInput(getch());
       state->update();
     }
-
   }
   catch (std::exception& e) {
     endwin(); // should also do this on sigint
     std::cout << "\nEXCEPTION: " << e.what() << std::endl;
   }
+  endwin();
   return 0;
 }
