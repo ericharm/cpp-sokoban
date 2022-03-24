@@ -13,7 +13,7 @@ enum MenuOptions {
 
 MainMenu::MainMenu() {
   curs_set(1);
-  struct MenuOption play, instructions, quit;
+  struct MainMenuOption play, instructions, quit;
 
   play.label = "Play";
   play.location = new Point(0, 4);
@@ -77,7 +77,7 @@ void MainMenu::drawTitle(WINDOW* win) {
 }
 
 void MainMenu::drawOptions(WINDOW* win) {
-  for (MenuOption option : this->options) {
+  for (MainMenuOption option : this->options) {
     mvwprintw(
       win,
       ScreenPosition::yOffset + option.location->y,
@@ -88,7 +88,7 @@ void MainMenu::drawOptions(WINDOW* win) {
 }
 
 void MainMenu::drawCursor(WINDOW* win) {
-  MenuOption* option = &this->options[this->currentOption];
+  MainMenuOption* option = &this->options[this->currentOption];
   wmove(
     win,
     ScreenPosition::yOffset + option->location->y,

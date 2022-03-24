@@ -13,7 +13,6 @@ add_library(
   Level.cpp
   Logger.h
   Logger.cpp
-  MenuOption.h
   Point.h
   Point.cpp
   ScreenPosition.h

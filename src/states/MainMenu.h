@@ -1,8 +1,13 @@
 #ifndef MAINMENU_H
 #define MAINMENU_H
 #include "../State.h"
-#include "../MenuOption.h"
+#include "../Point.h"
 #include <string>
+
+struct MainMenuOption {
+  std::string label;
+  Point* location;
+};
 
 class MainMenu: public State {
 
@@ -21,7 +26,7 @@ class MainMenu: public State {
     void selectCurrentOption();
     int width = 7;
     int height = 10;
-    MenuOption options [3];
+    MainMenuOption options [3];
     int currentOption;
 
 };
