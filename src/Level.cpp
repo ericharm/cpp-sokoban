@@ -16,7 +16,7 @@
 #include "Level.h"
 
 Level::Level(std::string fileName) {
-  this->player = std::shared_ptr<Player>(new Player(0, 0));
+  this->player = std::shared_ptr<Player>(std::make_shared<Player>(0, 0));
   this->loadFromFile(fileName);
   this->collisionManager = CollisionManager::forEntities(&this->entities);
 }
@@ -96,16 +96,16 @@ void Level::loadFromFile(std::string fileName) {
       if (column > this->width) this->width = column;
       switch (character) {
         case '0':
-          this->entities.push_back(std::shared_ptr<Boulder>(new Boulder(column, row)));
+          this->entities.push_back(std::make_shared<Boulder>(column, row));
           break;
         case '#':
-          this->entities.push_back(std::shared_ptr<Wall>(new Wall(column, row)));
+          this->entities.push_back(std::make_shared<Wall>(column, row));
           break;
         case '^':
-          this->entities.push_back(std::shared_ptr<Pit>(new Pit(column, row)));
+          this->entities.push_back(std::make_shared<Pit>(column, row));
           break;
         case 'X':
-          this->entities.push_back(std::shared_ptr<Exit>(new Exit(column, row)));
+          this->entities.push_back(std::make_shared<Exit>(column, row));
           break;
         case '@':
           this->player->moveTo(column, row);
