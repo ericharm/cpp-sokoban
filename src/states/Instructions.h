@@ -13,8 +13,8 @@ class Instructions: public State {
   private:
     void returnToMainMenu();
     void writeMessage(WINDOW * win);
-    int width = 20;
-    int height = 5;
+    int width = 42;
+    int height = 7;
 
 };
 #endif

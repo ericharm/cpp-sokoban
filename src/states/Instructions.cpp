@@ -11,6 +11,7 @@
 #include <vector>
 
 Instructions::Instructions() {
+  curs_set(0);
 }
 
 void Instructions::handleInput(int key) {
