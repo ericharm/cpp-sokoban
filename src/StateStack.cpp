@@ -34,6 +34,5 @@ std::unique_ptr<State>& StateStack::peek() {
 }
 
 StateStack* StateStack::getInstance() {
-  if (!instance) instance = new StateStack();
   return instance;
 }

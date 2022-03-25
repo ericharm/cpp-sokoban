@@ -4,7 +4,7 @@ LineAndCharacterIterator::LineAndCharacterIterator(std::vector<std::string> line
   this->lines = lines;
 }
 
-void LineAndCharacterIterator::eachLineEachChar(void (*action) (char, int, int)) {
+void LineAndCharacterIterator::eachLineEachChar(ActionFn action) {
   int row = 0;
   for (std::string& line : this->lines) {
     int column = 0;

@@ -5,6 +5,8 @@ add_library(
   states
   Game.h
   Game.cpp
+  Instructions.h
+  Instructions.cpp
   MainMenu.h
   MainMenu.cpp
   StageSelect.h

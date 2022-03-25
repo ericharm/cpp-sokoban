@@ -5,6 +5,7 @@
 #include "../Color.h"
 #include "../StateStack.h"
 #include "../states/StageSelect.h"
+#include "Instructions.h"
 
 enum MenuOptions {
   PlayOption,
@@ -112,12 +113,15 @@ void MainMenu::previousOption() {
 void MainMenu::selectCurrentOption() {
   switch (this->currentOption) {
     case PlayOption: {
-      StateStack* states = StateStack::getInstance();
+      auto states = StateStack::getInstance();
       states->swap(std::make_unique<StageSelect>());
       break;
      }
-    case InstructionsOption:
+    case InstructionsOption: {
+      auto states = StateStack::getInstance();
+      states->swap(std::make_unique<Instructions>());
       break;
+    }
     case QuitOption:
       exit(0);
       break;

@@ -11,6 +11,8 @@ add_library(
   EntityType.h
   Level.h
   Level.cpp
+  LineAndCharacterIterator.h
+  LineAndCharacterIterator.cpp
   Logger.h
   Logger.cpp
   Point.h
