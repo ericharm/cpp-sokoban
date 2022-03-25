@@ -14,7 +14,7 @@ StageSelect::StageSelect() {
     this->options[stage].label = "Stage " + stageNumber;
     int x = stage % 2 == 0 ? 0 : 10;
     int y = stage % 2 == 0 ? stage : stage -1;
-    this->options[stage].location = new Point(x, y);
+    this->options[stage].location = Point(x, y);
     this->options[stage].fileName = "./data/" + stageNumber + ".lvl";
   }
 
@@ -75,8 +75,8 @@ void StageSelect::drawOptions(WINDOW* win) {
   for (StageSelectOption option : this->options) {
     mvwprintw(
       win,
-      ScreenPosition::yOffset + option.location->y,
-      ScreenPosition::xOffset + option.location->x,
+      ScreenPosition::yOffset + option.location.y,
+      ScreenPosition::xOffset + option.location.x,
       option.label.c_str()
     );
   }
@@ -86,8 +86,8 @@ void StageSelect::drawCursor(WINDOW* win) {
   StageSelectOption* option = &this->options[this->currentOption];
   wmove(
     win,
-    ScreenPosition::yOffset + option->location->y,
-    ScreenPosition::xOffset + option->location->x - 2
+    ScreenPosition::yOffset + option->location.y,
+    ScreenPosition::xOffset + option->location.x - 2
   );
 }
 

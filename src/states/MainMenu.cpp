@@ -17,13 +17,13 @@ MainMenu::MainMenu() {
   struct MainMenuOption play, instructions, quit;
 
   play.label = "Play";
-  play.location = new Point(0, 4);
+  play.location = Point(0, 4);
 
   instructions.label = "Instructions";
-  instructions.location = new Point(0, 6);
+  instructions.location = Point(0, 6);
 
   quit.label = "Exit";
-  quit.location = new Point(0, 8);
+  quit.location = Point(0, 8);
 
   options[PlayOption] = play;
   options[InstructionsOption] = instructions;
@@ -81,8 +81,8 @@ void MainMenu::drawOptions(WINDOW* win) {
   for (MainMenuOption option : this->options) {
     mvwprintw(
       win,
-      ScreenPosition::yOffset + option.location->y,
-      ScreenPosition::xOffset + option.location->x,
+      ScreenPosition::yOffset + option.location.y,
+      ScreenPosition::xOffset + option.location.x,
       option.label.c_str()
     );
   }
@@ -92,8 +92,8 @@ void MainMenu::drawCursor(WINDOW* win) {
   MainMenuOption* option = &this->options[this->currentOption];
   wmove(
     win,
-    ScreenPosition::yOffset + option->location->y,
-    ScreenPosition::xOffset + option->location->x - 2
+    ScreenPosition::yOffset + option->location.y,
+    ScreenPosition::xOffset + option->location.x - 2
   );
 }
 

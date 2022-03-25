@@ -7,7 +7,7 @@
 struct StageSelectOption {
   std::string label;
   std::string fileName;
-  Point* location;
+  Point location;
 };
 
 class StageSelect : public State {

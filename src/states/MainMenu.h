@@ -6,7 +6,7 @@
 
 struct MainMenuOption {
   std::string label;
-  Point* location;
+  Point location;
 };
 
 class MainMenu: public State {

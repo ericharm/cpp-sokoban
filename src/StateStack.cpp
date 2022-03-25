@@ -8,6 +8,10 @@ StateStack::StateStack() {
   states = std::stack<std::unique_ptr<State>>();
 }
 
+StateStack::~StateStack() {
+  delete instance;
+}
+
 void StateStack::swap(std::unique_ptr<State> state) {
   this->pop();
   this->push(move(state));

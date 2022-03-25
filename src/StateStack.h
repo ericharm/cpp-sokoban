@@ -16,6 +16,7 @@ class StateStack {
 
   private:
     StateStack();
+    ~StateStack();
     std::stack<std::unique_ptr<State>> states;
     static StateStack* instance;
 
