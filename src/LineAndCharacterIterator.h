@@ -9,6 +9,7 @@ using ActionFn = std::function<void(char, int, int)>;
 class LineAndCharacterIterator {
   public:
     LineAndCharacterIterator(std::vector<std::string> lines);
+    static LineAndCharacterIterator fromFile(std::string fileName);
     void eachLineEachChar(ActionFn action);
 
   private:

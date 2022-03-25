@@ -3,6 +3,7 @@
 #include <functional>
 #include <memory>
 #include <string>
+#include "LineAndCharacterIterator.h"
 #include "Logger.h"
 #include "ScreenPosition.h"
 #include "StateStack.h"
@@ -84,33 +85,26 @@ void Level::quitToMainMenu() {
 }
 
 void Level::loadFromFile(std::string fileName) {
-  std::vector<std::string> fileData = this->readLevel(fileName);
-
-  int row = 0;
-  for (std::string& line : fileData) {
-    int column = 0;
-    row++;
-    if (row > this->height) this->height = row;
-    for (char& character: line) {
-      column++;
-      if (column > this->width) this->width = column;
-      switch (character) {
-        case '0':
-          this->entities.push_back(std::make_shared<Boulder>(column, row));
-          break;
-        case '#':
-          this->entities.push_back(std::make_shared<Wall>(column, row));
-          break;
-        case '^':
-          this->entities.push_back(std::make_shared<Pit>(column, row));
-          break;
-        case 'X':
-          this->entities.push_back(std::make_shared<Exit>(column, row));
-          break;
-        case '@':
-          this->player->moveTo(column, row);
-          break;
-      }
+  auto lines = LineAndCharacterIterator::fromFile(fileName);
+  lines.eachLineEachChar([this](char character, int x, int y) {
+    this->width = this->width < x ? x : this->width;
+    this->height = this->height < y ? y : this->width;
+    switch (character) {
+      case '0':
+        this->entities.push_back(std::make_shared<Boulder>(x, y));
+        break;
+      case '#':
+        this->entities.push_back(std::make_shared<Wall>(x, y));
+        break;
+      case '^':
+        this->entities.push_back(std::make_shared<Pit>(x, y));
+        break;
+      case 'X':
+        this->entities.push_back(std::make_shared<Exit>(x, y));
+        break;
+      case '@':
+        this->player->moveTo(x, y);
+        break;
     }
-  }
+  });
 }

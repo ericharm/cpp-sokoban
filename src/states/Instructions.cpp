@@ -4,7 +4,6 @@
 #include "../ScreenPosition.h"
 #include "../StateStack.h"
 #include "../Color.h"
-#include "../Logger.h"
 #include <curses.h>
 #include <fstream>
 #include <string>
@@ -35,15 +34,8 @@ void Instructions::render(WINDOW* win) {
 }
 
 void Instructions::writeMessage(WINDOW* win) {
-  std::ifstream file = std::ifstream("./data/instructions.txt");
-  std::vector<std::string> lines;
-  std::string line;
-  while(std::getline(file, line)) {
-    lines.push_back(line);
-    Logger::log(line);
-  }
-  LineAndCharacterIterator iterator = LineAndCharacterIterator(lines);
-  iterator.eachLineEachChar([&](char character, int y, int x) {
+  auto lines = LineAndCharacterIterator::fromFile("./data/instructions.txt");
+  lines.eachLineEachChar([&](char character, int x, int y) {
     mvwaddch(
         win,
         y + ScreenPosition::yOffset,

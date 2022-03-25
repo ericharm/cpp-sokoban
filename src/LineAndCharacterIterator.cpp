@@ -1,7 +1,16 @@
 #include "LineAndCharacterIterator.h"
+#include <fstream>
 
 LineAndCharacterIterator::LineAndCharacterIterator(std::vector<std::string> lines) {
   this->lines = lines;
+}
+
+LineAndCharacterIterator LineAndCharacterIterator::fromFile(std::string fileName) {
+  std::ifstream file = std::ifstream(fileName);
+  std::vector<std::string> lines;
+  std::string line;
+  while(std::getline(file, line)) lines.push_back(line);
+  return LineAndCharacterIterator(lines);
 }
 
 void LineAndCharacterIterator::eachLineEachChar(ActionFn action) {
@@ -11,7 +20,7 @@ void LineAndCharacterIterator::eachLineEachChar(ActionFn action) {
     row++;
     for (char& character: line) {
       column++;
-      action(character, row, column);
+      action(character, column, row);
     }
   }
 }
