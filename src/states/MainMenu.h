@@ -25,8 +25,8 @@ class MainMenu: public State {
     void previousOption();
     void selectCurrentOption();
     bool exitingGame = false;
-    int width = 7;
-    int height = 10;
+    int width = 12;
+    int height = 9;
     MainMenuOption options [3];
     int currentOption;
 

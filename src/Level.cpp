@@ -42,8 +42,8 @@ void Level::update() {
 }
 
 void Level::render(WINDOW* win) {
-  ScreenPosition::xOffset = (COLS / 2 - this->width / 2) - 2;
-  ScreenPosition::yOffset = (LINES / 2 - this->height / 2) - 2;
+  ScreenPosition::xOffset = (COLS / 2 - this->width / 2) - 1;
+  ScreenPosition::yOffset = (LINES / 2 - this->height / 2) - 1;
   for (std::shared_ptr<Entity>& entity : entities) {
     entity->render(win);
   }

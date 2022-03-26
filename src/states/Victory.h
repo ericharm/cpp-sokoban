@@ -13,8 +13,8 @@ class Victory: public State {
   private:
     void returnToMainMenu();
     void writeMessage(WINDOW * win);
-    int width = 20;
-    int height = 5;
+    int width = 10;
+    int height = 1;
 
 };
 #endif

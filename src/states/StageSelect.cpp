@@ -9,11 +9,12 @@
 #include "../states/MainMenu.h"
 
 StageSelect::StageSelect() {
+  int headerHeight = 3;
   for (int stage = 0; stage < 8; stage++) {
     std::string stageNumber = std::to_string(stage + 1);
     this->options[stage].label = "Stage " + stageNumber;
     int x = stage % 2 == 0 ? 0 : 10;
-    int y = stage % 2 == 0 ? stage + 1 : stage;
+    int y = stage % 2 == 0 ? stage + headerHeight + 1 : stage + headerHeight;
     this->options[stage].location = Point(x, y);
     this->options[stage].fileName = "./data/" + stageNumber + ".lvl";
   }
@@ -64,14 +65,14 @@ void StageSelect::drawTitle(WINDOW* win) {
   wattron(win, COLOR_PAIR(GreenColor));
   mvwprintw(
     win,
-    ScreenPosition::yOffset - 2,
+    ScreenPosition::yOffset,
     ScreenPosition::xOffset,
     "Stage Select"
   );
   wattroff(win, COLOR_PAIR(GreenColor));
   mvwprintw(
     win,
-    ScreenPosition::yOffset - 1,
+    ScreenPosition::yOffset + 1,
     ScreenPosition::xOffset,
     "------------"
   );

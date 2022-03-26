@@ -28,8 +28,8 @@ void Instructions::update() {
 }
 
 void Instructions::render(WINDOW* win) {
-  ScreenPosition::xOffset = (COLS / 2 - this->width / 2);
-  ScreenPosition::yOffset = (LINES / 2 - this->height / 2);
+  ScreenPosition::xOffset = (COLS / 2 - this->width / 2) - 1;
+  ScreenPosition::yOffset = (LINES / 2 - this->height / 2) - 1;
   this->writeMessage(win);
 }
 

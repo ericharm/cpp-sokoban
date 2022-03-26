@@ -57,8 +57,8 @@ void MainMenu::update() {
 }
 
 void MainMenu::render(WINDOW* win) {
-  ScreenPosition::xOffset = (COLS / 2 - this->width / 2) - 2;
-  ScreenPosition::yOffset = (LINES / 2 - this->height / 2) - 2;
+  ScreenPosition::xOffset = (COLS / 2 - this->width / 2);
+  ScreenPosition::yOffset = (LINES / 2 - this->height / 2);
 
   this->drawTitle(win);
   this->drawOptions(win);
