@@ -13,7 +13,7 @@ StageSelect::StageSelect() {
     std::string stageNumber = std::to_string(stage + 1);
     this->options[stage].label = "Stage " + stageNumber;
     int x = stage % 2 == 0 ? 0 : 10;
-    int y = stage % 2 == 0 ? stage : stage -1;
+    int y = stage % 2 == 0 ? stage + 1 : stage;
     this->options[stage].location = Point(x, y);
     this->options[stage].fileName = "./data/" + stageNumber + ".lvl";
   }
@@ -52,8 +52,8 @@ void StageSelect::update() {
 }
 
 void StageSelect::render(WINDOW* win) {
-  ScreenPosition::xOffset = (COLS / 2 - this->width / 2) - 2;
-  ScreenPosition::yOffset = (LINES / 2 - this->height / 2) - 2;
+  ScreenPosition::xOffset = (COLS / 2 - this->width / 2);
+  ScreenPosition::yOffset = (LINES / 2 - this->height / 2);
 
   this->drawTitle(win);
   this->drawOptions(win);
@@ -64,11 +64,18 @@ void StageSelect::drawTitle(WINDOW* win) {
   wattron(win, COLOR_PAIR(GreenColor));
   mvwprintw(
     win,
-    ScreenPosition::yOffset - 3,
+    ScreenPosition::yOffset - 2,
     ScreenPosition::xOffset,
     "Stage Select"
   );
   wattroff(win, COLOR_PAIR(GreenColor));
+  mvwprintw(
+    win,
+    ScreenPosition::yOffset - 1,
+    ScreenPosition::xOffset,
+    "------------"
+  );
+
 }
 
 void StageSelect::drawOptions(WINDOW* win) {

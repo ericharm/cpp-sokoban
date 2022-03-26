@@ -48,6 +48,12 @@ void MainMenu::handleInput(int key) {
 }
 
 void MainMenu::update() {
+  if (this->exitingGame) {
+    auto states = StateStack::getInstance();
+    while (!states->empty()) {
+      states->pop();
+    }
+  }
 }
 
 void MainMenu::render(WINDOW* win) {
@@ -123,7 +129,7 @@ void MainMenu::selectCurrentOption() {
       break;
     }
     case QuitOption:
-      exit(0);
+      this->exitingGame = true;
       break;
   }
 }

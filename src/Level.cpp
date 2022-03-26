@@ -6,14 +6,10 @@
 #include "LineAndCharacterIterator.h"
 #include "ScreenPosition.h"
 #include "StateStack.h"
-#include "entities/Boulder.h"
-#include "entities/Player.h"
-#include "entities/Pit.h"
-#include "entities/Wall.h"
-#include "entities/Exit.h"
+#include "Level.h"
 #include "states/MainMenu.h"
 #include "states/Victory.h"
-#include "Level.h"
+#include "entities/AllEntities.h"
 
 Level::Level(std::string fileName) {
   this->player = std::shared_ptr<Player>(std::make_shared<Player>(0, 0));

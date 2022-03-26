@@ -12,7 +12,6 @@ void signalHandler(int signum) {
   endwin();
   // cleanup and close up stuff here
   // terminate program
-
   exit(signum);
 }
 
@@ -50,8 +49,7 @@ int main() {
       state->handleInput(getch());
       state->update();
     }
-  }
-  catch (std::exception& e) {
+  } catch (std::exception& e) {
     endwin(); // should also do this on sigint
     std::cout << "\nEXCEPTION: " << e.what() << std::endl;
   }

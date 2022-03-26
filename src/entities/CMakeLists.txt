@@ -3,6 +3,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 add_library(
   entities
+  AllEntities.h
   Boulder.h
   Boulder.cpp
   Exit.h
