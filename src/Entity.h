@@ -14,7 +14,6 @@ class Entity {
     Entity(int x, int y);
     virtual ~Entity() = default;
     virtual void render(WINDOW * win);
-    virtual bool is(std::shared_ptr<Entity>);
     virtual void moveTo(int x, int y);
     virtual void moveBy(int x, int y);
     virtual bool moveThrough(int x, int y, std::vector<std::shared_ptr<Entity>> entities);

@@ -13,7 +13,7 @@ bool Player::moveThrough(int x, int y, std::vector<std::shared_ptr<Entity>> enti
   int newX = this->x + x;
   int newY = this->y + y;
   for (std::shared_ptr<Entity> entity : entities) {
-    bool collides = !this->is(entity) && entity->getX() == newX && entity->getY() == newY;
+    bool collides = entity->getX() == newX && entity->getY() == newY;
     if (collides) {
       if (entity->moveThrough(x, y, entities)) {
         this->moveBy(x, y);

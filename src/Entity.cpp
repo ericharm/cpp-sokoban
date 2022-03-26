@@ -40,6 +40,3 @@ void Entity::remove() {
   this->markedForRemoval = true;
 }
 
-bool Entity::is(std::shared_ptr<Entity> e) {
-  return this->getX() == e->getX() && this->getY() == e->getY() && e->type == e->type;
-}
