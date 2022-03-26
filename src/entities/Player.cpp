@@ -1,5 +1,4 @@
 #include "Player.h"
-#include "../Logger.h"
 #include "../states/Victory.h"
 
 Player::Player(int x, int y) {

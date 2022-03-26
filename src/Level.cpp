@@ -4,7 +4,6 @@
 #include <memory>
 #include <string>
 #include "LineAndCharacterIterator.h"
-#include "Logger.h"
 #include "ScreenPosition.h"
 #include "StateStack.h"
 #include "entities/Boulder.h"
