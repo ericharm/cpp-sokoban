@@ -28,19 +28,35 @@ void Instructions::update() {
 }
 
 void Instructions::render(WINDOW* win) {
-  ScreenPosition::xOffset = (COLS / 2 - this->width / 2) - 2;
-  ScreenPosition::yOffset = (LINES / 2 - this->height / 2) - 2;
+  ScreenPosition::xOffset = (COLS / 2 - this->width / 2);
+  ScreenPosition::yOffset = (LINES / 2 - this->height / 2);
   this->writeMessage(win);
 }
 
 void Instructions::writeMessage(WINDOW* win) {
   auto lines = LineAndCharacterIterator::fromFile("./data/instructions.txt");
   lines.eachLineEachChar([&](char character, int x, int y) {
+    int color = COLOR_PAIR(NoColor);
+    switch (character) {
+      case '0':
+        color = COLOR_PAIR(CyanColor);
+        break;
+      case '^':
+        color = COLOR_PAIR(GreenColor);
+        break;
+      case 'X':
+        color = COLOR_PAIR(YellowColor);
+        break;
+      case '@':
+        color = COLOR_PAIR(MagentaColor);
+        break;
+    }
+
     mvwaddch(
         win,
         y + ScreenPosition::yOffset,
         x + ScreenPosition::xOffset,
-        character
+        character | color
     );
   });
 }
