@@ -6,8 +6,11 @@
 class Pit: public Entity {
 
   public:
-    Pit(int x, int y);
-    bool moveThrough(int x, int y, std::vector<std::shared_ptr<Entity>> entities);
-
+    Pit(int x, int y) {
+      this->moveTo(x, y);
+      this->character = '^';
+      this->color = GreenColor;
+      this->type = PitType;
+    }
 };
 #endif

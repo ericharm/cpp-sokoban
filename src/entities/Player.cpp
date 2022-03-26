@@ -15,20 +15,20 @@ bool Player::moveThrough(int x, int y, std::vector<std::shared_ptr<Entity>> enti
   for (std::shared_ptr<Entity> entity : entities) {
     bool collides = !this->is(entity) && entity->getX() == newX && entity->getY() == newY;
     if (collides) {
-      if (entity->type == ExitType) {
-        this->moveBy(x, y);
-        this->victorious = true;
-        return true;
-      }
-
-      bool squareWasVacated = entity->moveThrough(x, y, entities);
-      if (squareWasVacated) {
+      if (entity->moveThrough(x, y, entities)) {
         this->moveBy(x, y);
         return true;
-      }
-      return false;
+      } else return this->handleCollisionWith(entity);
     }
   }
   this->moveBy(x, y);
   return true;
+}
+
+bool Player::handleCollisionWith(std::shared_ptr<Entity> entity) {
+  if (entity->type == ExitType) {
+    this->moveBy(x, y);
+    this->victorious = true;
+    return true;
+  } else return false;
 }

@@ -12,16 +12,18 @@ bool Boulder::moveThrough(int x, int y, std::vector<std::shared_ptr<Entity>> ent
   int newY = this->y + y;
   for (std::shared_ptr<Entity> entity : entities) {
     bool collides = !this->is(entity) && entity->getX() == newX && entity->getY() == newY;
-    if (collides) {
-      if (entity->type == PitType) {
-        this->remove();
-        entity->remove();
-        return true;
-      }
-      return false;
-    }
+    if (collides) return this->handleCollisionWith(entity);
   }
 
   this->moveBy(x, y);
   return true;
+}
+
+bool Boulder::handleCollisionWith(std::shared_ptr<Entity> entity) {
+  if (entity->type == PitType) {
+    this->remove();
+    entity->remove();
+    return true;
+  }
+  return false;
 }

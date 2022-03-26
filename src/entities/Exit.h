@@ -6,7 +6,12 @@
 class Exit: public Entity {
 
   public:
-    Exit(int x, int y);
+    Exit(int x, int y) {
+      this->moveTo(x, y);
+      this->character = 'X';
+      this->color = YellowColor;
+      this->type = ExitType;
+    }
 
 };
 #endif

@@ -6,14 +6,10 @@ add_library(
   Boulder.h
   Boulder.cpp
   Exit.h
-  Exit.cpp
   Pit.h
-  Pit.cpp
   Player.h
   Player.cpp
-  Tile.h
   Wall.h
-  Wall.cpp
 )
 
 target_include_directories(

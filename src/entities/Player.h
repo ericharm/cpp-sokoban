@@ -8,6 +8,7 @@ class Player: public Entity {
   public:
     Player(int x, int y);
     bool moveThrough(int x, int y, std::vector<std::shared_ptr<Entity>> entities);
+    bool handleCollisionWith(std::shared_ptr<Entity> entity);
     bool victorious = false;
 
 };
