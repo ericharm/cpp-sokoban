@@ -20,7 +20,7 @@ void Entity::moveBy(int x, int y) {
 }
 
 // returns true if the square the Entity was on has been vacated
-bool Entity::moveThrough(int x, int y, std::vector<std::shared_ptr<Entity>> entities) {
+bool Entity::pushTo(int x, int y, std::vector<std::shared_ptr<Entity>> entities) {
   return false;
 }
 

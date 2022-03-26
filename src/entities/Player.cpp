@@ -8,13 +8,13 @@ Player::Player(int x, int y) {
   this->type = PlayerType;
 }
 
-bool Player::moveThrough(int x, int y, std::vector<std::shared_ptr<Entity>> entities) {
+bool Player::pushTo(int x, int y, std::vector<std::shared_ptr<Entity>> entities) {
   int newX = this->x + x;
   int newY = this->y + y;
   for (std::shared_ptr<Entity> entity : entities) {
     bool collides = entity->getX() == newX && entity->getY() == newY;
     if (collides) {
-      if (entity->moveThrough(x, y, entities)) {
+      if (entity->pushTo(x, y, entities)) {
         this->moveBy(x, y);
         return true;
       } else return this->handleCollisionWith(entity);

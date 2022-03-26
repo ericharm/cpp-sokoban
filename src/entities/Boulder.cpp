@@ -7,7 +7,7 @@ Boulder::Boulder(int x, int y) {
   this->type = BoulderType;
 };
 
-bool Boulder::moveThrough(int x, int y, std::vector<std::shared_ptr<Entity>> entities) {
+bool Boulder::pushTo(int x, int y, std::vector<std::shared_ptr<Entity>> entities) {
   int newX = this->x + x;
   int newY = this->y + y;
   for (std::shared_ptr<Entity> entity : entities) {

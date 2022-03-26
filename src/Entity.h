@@ -16,7 +16,7 @@ class Entity {
     virtual void render(WINDOW * win);
     virtual void moveTo(int x, int y);
     virtual void moveBy(int x, int y);
-    virtual bool moveThrough(int x, int y, std::vector<std::shared_ptr<Entity>> entities);
+    virtual bool pushTo(int x, int y, std::vector<std::shared_ptr<Entity>> entities);
     virtual int getX();
     virtual int getY();
     virtual void remove();

@@ -23,16 +23,16 @@ Level::Level(std::string fileName) {
 void Level::handleInput(int key) {
   switch (key) {
     case KEY_DOWN:
-      this->player->moveThrough(0, 1, this->entities);
+      this->player->pushTo(0, 1, this->entities);
       break;
     case KEY_UP:
-      this->player->moveThrough(0, -1, this->entities);
+      this->player->pushTo(0, -1, this->entities);
       break;
     case KEY_LEFT:
-      this->player->moveThrough(-1, 0, this->entities);
+      this->player->pushTo(-1, 0, this->entities);
       break;
     case KEY_RIGHT:
-      this->player->moveThrough(1, 0, this->entities);
+      this->player->pushTo(1, 0, this->entities);
       break;
     case 27: // ESC
       this->quitToMainMenu();
