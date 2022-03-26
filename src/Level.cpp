@@ -19,22 +19,21 @@
 Level::Level(std::string fileName) {
   this->player = std::shared_ptr<Player>(std::make_shared<Player>(0, 0));
   this->loadFromFile(fileName);
-  this->collisionManager = CollisionManager::forEntities(&this->entities);
 }
 
 void Level::handleInput(int key) {
   switch (key) {
     case KEY_DOWN:
-      this->collisionManager->move(this->player)->by(0, 1);
+      this->player->moveThrough(0, 1, this->entities);
       break;
     case KEY_UP:
-      this->collisionManager->move(this->player)->by(0, -1);
+      this->player->moveThrough(0, -1, this->entities);
       break;
     case KEY_LEFT:
-      this->collisionManager->move(this->player)->by(-1, 0);
+      this->player->moveThrough(-1, 0, this->entities);
       break;
     case KEY_RIGHT:
-      this->collisionManager->move(this->player)->by(1, 0);
+      this->player->moveThrough(1, 0, this->entities);
       break;
     case 27: // ESC
       this->quitToMainMenu();

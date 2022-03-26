@@ -1,7 +1,6 @@
 #ifndef LEVEL_H
 #define LEVEL_H
 #include "Entity.h"
-#include "CollisionManager.h"
 #include "entities/Player.h"
 #include <algorithm>
 
@@ -16,7 +15,6 @@ class Level {
   private:
     int width;
     int height;
-    std::unique_ptr<CollisionManager> collisionManager;
     std::shared_ptr<Player> player;
     std::vector<std::shared_ptr<Entity>> entities;
     std::vector<std::string> readLevel(std::string fileName);

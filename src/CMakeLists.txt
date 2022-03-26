@@ -3,8 +3,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 add_library(
   src
-  CollisionManager.h
-  CollisionManager.cpp
   Color.h
   Entity.h
   Entity.cpp

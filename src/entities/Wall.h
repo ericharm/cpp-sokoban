@@ -6,12 +6,8 @@
 class Wall: public Entity {
 
   public:
-    Wall(int x, int y) {
-      this->moveTo(x, y);
-      this->character = '#';
-      this->color = NoColor;
-      this->type = WallType;
-    };
+    Wall(int x, int y);
+    bool moveThrough(int x, int y, std::vector<std::shared_ptr<Entity>> entities);
 };
 #endif
 

@@ -9,17 +9,26 @@ Player::Player(int x, int y) {
   this->type = PlayerType;
 }
 
-bool Player::handleCollisionWith(std::shared_ptr<Entity> entity) {
-  if (entity->type == WallType || entity->type == PitType) {
-    return false;
-  }
+bool Player::moveThrough(int x, int y, std::vector<std::shared_ptr<Entity>> entities) {
+  int newX = this->x + x;
+  int newY = this->y + y;
+  for (std::shared_ptr<Entity> entity : entities) {
+    bool collides = !this->is(entity) && entity->getX() == newX && entity->getY() == newY;
+    if (collides) {
+      if (entity->type == ExitType) {
+        this->moveBy(x, y);
+        this->victorious = true;
+        return true;
+      }
 
-  /* if (entity->type == BoulderType) { */
-  /*   if (entity->move */
-  /* } */
-
-  if (entity->type == ExitType) {
-    this->victorious = true;
+      bool squareWasVacated = entity->moveThrough(x, y, entities);
+      if (squareWasVacated) {
+        this->moveBy(x, y);
+        return true;
+      }
+      return false;
+    }
   }
+  this->moveBy(x, y);
   return true;
 }

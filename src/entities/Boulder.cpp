@@ -7,9 +7,21 @@ Boulder::Boulder(int x, int y) {
   this->type = BoulderType;
 };
 
-bool Boulder::handleCollisionWith(std::shared_ptr<Entity> entity) {
-  if (entity->type == WallType || entity->type == BoulderType) {
-    return false;
+bool Boulder::moveThrough(int x, int y, std::vector<std::shared_ptr<Entity>> entities) {
+  int newX = this->x + x;
+  int newY = this->y + y;
+  for (std::shared_ptr<Entity> entity : entities) {
+    bool collides = !this->is(entity) && entity->getX() == newX && entity->getY() == newY;
+    if (collides) {
+      if (entity->type == PitType) {
+        this->remove();
+        entity->remove();
+        return true;
+      }
+      return false;
+    }
   }
+
+  this->moveBy(x, y);
   return true;
 }

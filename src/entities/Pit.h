@@ -7,6 +7,7 @@ class Pit: public Entity {
 
   public:
     Pit(int x, int y);
+    bool moveThrough(int x, int y, std::vector<std::shared_ptr<Entity>> entities);
 
 };
 #endif

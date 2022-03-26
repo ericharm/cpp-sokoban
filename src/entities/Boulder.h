@@ -7,7 +7,7 @@ class Boulder: public Entity {
 
   public:
     Boulder(int x, int y);
-    bool handleCollisionWith(std::shared_ptr<Entity> entity);
+    bool moveThrough(int x, int y, std::vector<std::shared_ptr<Entity>> entities);
 
 };
 #endif

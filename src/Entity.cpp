@@ -19,6 +19,11 @@ void Entity::moveBy(int x, int y) {
   this->y += y;
 }
 
+// returns true if the square the Entity was on has been vacated
+bool Entity::moveThrough(int x, int y, std::vector<std::shared_ptr<Entity>> entities) {
+  return false;
+}
+
 int Entity::getY() {
   return this->y;
 }
@@ -29,13 +34,6 @@ int Entity::getX() {
 
 void Entity::render(WINDOW * win) {
   mvwaddch(win, this->y + ScreenPosition::yOffset, this->x + ScreenPosition::xOffset, this->character | COLOR_PAIR(this->color));
-}
-
-bool Entity::handleCollisionWith(std::shared_ptr<Entity> entity) {
-  if (entity->type == WallType) {
-    return false;
-  }
-  return true;
 }
 
 void Entity::remove() {

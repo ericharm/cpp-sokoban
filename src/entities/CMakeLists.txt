@@ -13,6 +13,7 @@ add_library(
   Player.cpp
   Tile.h
   Wall.h
+  Wall.cpp
 )
 
 target_include_directories(
