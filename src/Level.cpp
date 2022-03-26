@@ -56,14 +56,6 @@ void Level::render(WINDOW* win) {
   this->player->render(win);
 }
 
-std::vector<std::string> Level::readLevel(std::string fileName) {
-  std::ifstream file = std::ifstream(fileName);
-  std::vector<std::string> lines;
-  std::string line;
-  while(std::getline(file, line)) lines.push_back(line);
-  return lines;
-}
-
 void Level::removeDeadEntities() {
   auto removers = std::remove_if(
       this->entities.begin(), this->entities.end(), std::mem_fn(&Entity::markedForRemoval)

@@ -17,7 +17,6 @@ class Level {
     int height;
     std::shared_ptr<Player> player;
     std::vector<std::shared_ptr<Entity>> entities;
-    std::vector<std::string> readLevel(std::string fileName);
     void loadFromFile(std::string fileName);
     void removeDeadEntities();
     void proceedIfCompleted();
