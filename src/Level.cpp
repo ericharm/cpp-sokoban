@@ -79,7 +79,7 @@ void Level::loadFromFile(std::string fileName) {
   auto lines = LineAndCharacterIterator::fromFile(fileName);
   lines.eachLineEachChar([this](char character, int x, int y) {
     this->width = this->width < x ? x : this->width;
-    this->height = this->height < y ? y : this->width;
+    this->height = this->height < y ? y : this->height;
     switch (character) {
       case '0':
         this->entities.push_back(std::make_shared<Boulder>(x, y));
