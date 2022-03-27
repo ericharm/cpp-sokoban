@@ -1,10 +1,10 @@
-#include "MainMenu.h"
 #include <curses.h>
 #include <memory>
 #include "../ScreenPosition.h"
 #include "../Color.h"
 #include "../StateStack.h"
 #include "../states/StageSelect.h"
+#include "MainMenu.h"
 #include "Instructions.h"
 
 enum MenuOptions {

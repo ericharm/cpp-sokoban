@@ -1,13 +1,13 @@
-#include "Instructions.h"
-#include "MainMenu.h"
-#include "../LineAndCharacterIterator.h"
-#include "../ScreenPosition.h"
-#include "../StateStack.h"
-#include "../Color.h"
 #include <curses.h>
 #include <fstream>
 #include <string>
 #include <vector>
+#include "../StateStack.h"
+#include "../ScreenPosition.h"
+#include "../LineAndCharacterIterator.h"
+#include "../Color.h"
+#include "Instructions.h"
+#include "MainMenu.h"
 
 Instructions::Instructions() {
   curs_set(0);

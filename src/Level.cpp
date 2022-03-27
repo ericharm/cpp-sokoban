@@ -19,15 +19,19 @@ Level::Level(std::string fileName) {
 void Level::handleInput(int key) {
   switch (key) {
     case KEY_DOWN:
+    case 's':
       this->player->pushTo(0, 1, this->entities);
       break;
     case KEY_UP:
+    case 'w':
       this->player->pushTo(0, -1, this->entities);
       break;
     case KEY_LEFT:
+    case 'a':
       this->player->pushTo(-1, 0, this->entities);
       break;
     case KEY_RIGHT:
+    case 'd':
       this->player->pushTo(1, 0, this->entities);
       break;
     case 27: // ESC
