@@ -1,7 +1,3 @@
-CPP=g++
-CPPFLAGS=--std=c++11 -c -g
-OFLAGS=-o ./build/
-
 all: run
 
 run: link
