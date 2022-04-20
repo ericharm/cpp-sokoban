@@ -7,8 +7,6 @@ add_library(
   Entity.h
   Entity.cpp
   EntityType.h
-  Level.h
-  Level.cpp
   LineAndCharacterIterator.h
   LineAndCharacterIterator.cpp
   Logger.h
