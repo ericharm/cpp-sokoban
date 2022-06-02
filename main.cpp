@@ -44,7 +44,7 @@ int main() {
       std::unique_ptr<State>& state = states->peek();
       wclear(win);
       state->render(win);
-      wborder(win, 0, 0, 0, 0, 0, 0, 0, 0);
+      // wborder(win, 0, 0, 0, 0, 0, 0, 0, 0);
       wrefresh(win);
       state->handleInput(getch());
       state->update();
